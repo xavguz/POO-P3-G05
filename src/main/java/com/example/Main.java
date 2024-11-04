@@ -7,11 +7,14 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        String respuesta;
+        String input;
 
         do{
             System.out.println("a. Crear perfil\nb. Seleccionar perfil");
-            respuesta = sc.nextLine();
-        } while (respuesta.equals("a") || respuesta.equals("b"));
+            input = sc.nextLine();
+        } while (!input.equalsIgnoreCase("a") &&
+                !input.equalsIgnoreCase("b"));
+
+        sc.close();
     }
 }

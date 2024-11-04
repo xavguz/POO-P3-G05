@@ -20,11 +20,23 @@ public class Perfil {
         return nombreUsuario;
     }
 
+    public void setNombreUsuario(String nombreUsuario){
+        this.nombreUsuario = nombreUsuario;
+    }
+
     public String getRelacion() {
         return relacion;
     }
 
+    public void setRelacion(String relacion){
+        this.relacion = relacion;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 }
