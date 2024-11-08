@@ -11,10 +11,8 @@ public class Main {
 
         do{
             System.out.println("a. Crear perfil\nb. Seleccionar perfil");
-            input = sc.nextLine();
-        } while (!input.equalsIgnoreCase("a") &&
-                !input.equalsIgnoreCase("b"));
-
-        sc.close();
+            input = sc.nextLine().toLowerCase();
+        } while (!input.equals("a") &&
+                !input.equals("b"));
     }
 }
