@@ -54,6 +54,6 @@ public class Perfil {
     public String toString(){
         return "Nombre de Usuario: " + nombreUsuario + "\n" +
                 "Relacion del Usuario: " + relacion + "\n" +
-                "Email del Usuario:" + (email.isEmpty()?"No tiene email":email);
+                "Email del Usuario: " + ((email.equals(null))?"No tiene email":email);
     }
 }
