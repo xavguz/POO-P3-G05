@@ -12,9 +12,9 @@ public class Funciones {
     public static String Opciones(){
         String opcion;
         do {
-            System.out.println("a.Crear perfil \nb.Seleccionar perfil");
+            System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");
             opcion = sc.nextLine().toLowerCase();
-        }while(!opcion.equals("a") && !opcion.equals("b"));
+        }while(!opcion.equals("a") && !opcion.equals("b") && !opcion.equals("c"));
         return opcion;
     }
     
@@ -38,7 +38,7 @@ public class Funciones {
 
     public static void SeleccionarPerfil(ArrayList<Perfil> listaUsuarios){
         for(Perfil usuario:listaUsuarios){
-        System.out.println(usuario.getNombreUsuario() + "\n");
+        System.out.printf(usuario.getNombreUsuario() + "\n");
         }
     }
 
