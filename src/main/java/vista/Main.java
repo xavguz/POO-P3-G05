@@ -1,6 +1,6 @@
 package vista;
 
-import Controladores.Funciones;
+import Controladores.PerfilControlador;
 import modelo.Perfil;
 
 public class Main {
@@ -12,13 +12,13 @@ public class Main {
         System.out.println("-----------");
 
         while(contador == 0){
-            String opcion = Funciones.Opciones();
+            String opcion = PerfilControlador.Opciones();
             switch(opcion){
                 case "a":
-                    Funciones.CrearPerfil();
+                    PerfilControlador.CrearPerfil();
                 break;
                 case "b":
-                    Funciones.SeleccionarPerfil(Perfil.getListaUsuarios());
+                    PerfilControlador.SeleccionarPerfil(PerfilControlador.getListaUsuario());
                     contador += 1;
                 break;
                 case "c":

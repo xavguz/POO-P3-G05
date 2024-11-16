@@ -1,8 +1,8 @@
 package modelo.medicina;
 
-import modelo.medicina.enums.FrecuenciaDia;
-import modelo.medicina.enums.Presentacion;
-import modelo.medicina.enums.Frecuencia;
+import modelo.enums.Frecuencia;
+import modelo.enums.FrecuenciaDia;
+import modelo.enums.Presentacion;
 
 public class Medicina {
 

@@ -1,13 +1,17 @@
 package Controladores;
 
 import modelo.Perfil;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Funciones {
+public class PerfilControlador {
 
     static Scanner sc = new Scanner(System.in);
+    public static ArrayList<Perfil> listaUsuario = new ArrayList<>();
+
+    public static ArrayList<Perfil> getListaUsuario() {
+        return listaUsuario;
+    }
 
     public static String Opciones(){
         String opcion;
@@ -29,17 +33,33 @@ public class Funciones {
 
         if (!email.isEmpty()){
             Perfil perfil = new Perfil(nombre,relacion,email);
+            listaUsuario.add(perfil);
         }
         else {
             Perfil perfil = new Perfil(nombre,relacion,"No tiene email.");
+            listaUsuario.add(perfil);
         }
         System.out.println("Se ha creado un nuevo perfil.");
     }
 
     public static void SeleccionarPerfil(ArrayList<Perfil> listaUsuarios){
-        for(Perfil usuario:listaUsuarios){
-        System.out.printf(usuario.getNombreUsuario() + "\n");
+        System.out.println("-----------------\nLista de perfiles\n-----------------");
+
+        for(Perfil usuario:listaUsuario){
+            System.out.printf(usuario.getNombreUsuario() + "\n");
+        }
+
+        System.out.println("Seleccine un perfil: ");
+        String nombre = sc.nextLine();
+        boolean encontrado = false;
+        for (Perfil usuario:listaUsuario){
+            if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)){
+                encontrado = true;
+                System.out.println("\n Hola, " + nombre);
+            }
+        }
+        if (encontrado == false){
+            System.out.println("\n No existe el usuario.");
         }
     }
-
 }

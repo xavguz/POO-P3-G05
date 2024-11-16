@@ -1,4 +1,4 @@
-package modelo.medicina.enums;
+package modelo.enums;
 
 public enum FrecuenciaDia {
     UNA_VEZ_AL_DIA,
