@@ -1,21 +1,17 @@
 package modelo.medicina;
 
-import modelo.enums.Frecuencia;
-import modelo.enums.FrecuenciaDia;
-import modelo.enums.Presentacion;
-
 public class Medicina {
 
     private String nombreMedicamento;
     private float unidadesDisponibles;
-    private Presentacion presentacion;
-    private Frecuencia frecuencia;
-    private FrecuenciaDia frecuenciaDia;
+    private String presentacion;
+    private String frecuencia;
+    private String frecuenciaDia;
     private float dosis;
 
     public Medicina(String nombreMedicamento, float unidadesDisponibles,
-                    Presentacion presentacion, Frecuencia frecuencia,
-                    FrecuenciaDia frecuenciaDia, float dosis){
+                    String presentacion, String frecuencia,
+                    String frecuenciaDia, float dosis){
         this.nombreMedicamento = nombreMedicamento;
         this.unidadesDisponibles = unidadesDisponibles;
         this.presentacion = presentacion;
@@ -48,27 +44,27 @@ public class Medicina {
         this.unidadesDisponibles = unidadesDisponibles;
     }
 
-    public Presentacion getPresentacion(){
+    public String getPresentacion(){
         return presentacion;
     }
 
-    public void setPresentacion(Presentacion presentacion){
+    public void setPresentacion(String presentacion){
         this.presentacion = presentacion;
     }
 
-    public Frecuencia getFrecuencia(){
+    public String getFrecuencia(){
         return frecuencia;
     }
 
-    public void setFrecuencia(Frecuencia frecuencia){
+    public void setFrecuencia(String frecuencia){
         this.frecuencia = frecuencia;
     }
 
-    public FrecuenciaDia getFrecuenciaDia(){
+    public String getFrecuenciaDia(){
         return frecuenciaDia;
     }
 
-    public void setFrecuenciaDia(FrecuenciaDia frecuenciaDia){
+    public void setFrecuenciaDia(String frecuenciaDia){
         this.frecuenciaDia = frecuenciaDia;
     }
 

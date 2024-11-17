@@ -15,6 +15,12 @@ public class PerfilControlador {
 
     public static String Opciones(){
         String opcion;
+        System.out.println("-----------------\nLista de perfiles\n-----------------");
+
+        for(Perfil usuario:listaUsuario){
+            System.out.printf("- " + usuario.getNombreUsuario() + "\n");
+        }
+
         do {
             System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");
             opcion = sc.nextLine().toLowerCase();
@@ -43,23 +49,46 @@ public class PerfilControlador {
     }
 
     public static void SeleccionarPerfil(ArrayList<Perfil> listaUsuarios){
+        
         System.out.println("-----------------\nLista de perfiles\n-----------------");
-
         for(Perfil usuario:listaUsuario){
-            System.out.printf(usuario.getNombreUsuario() + "\n");
+            System.out.printf("- " + usuario.getNombreUsuario() + "\n");
         }
-
         System.out.println("Seleccine un perfil: ");
+
         String nombre = sc.nextLine();
         boolean encontrado = false;
+
         for (Perfil usuario:listaUsuario){
             if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)){
                 encontrado = true;
-                System.out.println("\n Hola, " + nombre);
+                System.out.println("\nHola, " + nombre + " que quieres hacer: ");
+                System.out.println("\n1.Administrar Medicamentos.\n2.Administrar Medicos.\n3.Administrar Actividad Fisica.\n");
+                int opcion = sc.nextInt();
+                switch (opcion){
+                    case 1:
+                        System.out.println("Escoja lo que desee hacer: \n");
+                        System.out.println("1.Añadir Medicina.\n2.Eliminar Medicina.\n3.Registrar Toma.");
+                        opcion = sc.nextInt();
+                        
+                        switch (opcion){
+                            case 1:
+                                MedicinaControlador.añadirMedicina();
+
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                    break;
+
+                }
+
             }
         }
         if (encontrado == false){
-            System.out.println("\n No existe el usuario.");
+            System.out.println("\nNo existe el usuario.");
         }
     }
 }
