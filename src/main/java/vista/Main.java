@@ -1,24 +1,23 @@
 package vista;
 
-import Controladores.Funciones;
-import modelo.Perfil;
+import Controladores.PerfilControlador;
 
 public class Main {
     public static void main(String[] args) {
         int contador = 0;
 
-        System.out.println("-----------");
-        System.out.println("  Bienvenido");
-        System.out.println("-----------");
+        System.out.println("------------");
+        System.out.println(" Bienvenido");
+        System.out.println("------------");
 
         while(contador == 0){
-            String opcion = Funciones.Opciones();
+            String opcion = PerfilControlador.Opciones();
             switch(opcion){
                 case "a":
-                    Funciones.CrearPerfil();
+                    PerfilControlador.CrearPerfil();
                 break;
                 case "b":
-                    Funciones.SeleccionarPerfil(Perfil.getListaUsuarios());
+                    PerfilControlador.SeleccionarPerfil(PerfilControlador.getListaUsuario());
                     contador += 1;
                 break;
                 case "c":
