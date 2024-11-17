@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MedicoControlador {
-    public static ArrayList<Medico> medicoRegistrado = new ArrayList<Medico>();
+    public static ArrayList<Medico> medicoRegistrado = new ArrayList<>();
     static Scanner sc= new Scanner(System.in);
     
     public static void AñadirMedico(){
@@ -23,7 +23,7 @@ public class MedicoControlador {
         for (Especialidades e:Especialidades.values() ){
             System.out.println(e);
         }
-        System.out.print("Ingrese Especialidad (numero del 1 al 9): ");
+        System.out.print("Ingrese Especialidad (numero del 1 al 10): ");
         int opcion= sc.nextInt();
        
         switch (opcion){
@@ -59,7 +59,7 @@ public class MedicoControlador {
             break;
         }
 
-
+        sc.nextLine();
    
         System.out.print("Ingrese teléfono: ");
         numeroTelefono= sc.nextLine();
@@ -73,8 +73,19 @@ public class MedicoControlador {
         Medico medico = new Medico(nombreMedico, especialidad, numeroTelefono, email, direccion);
         medicoRegistrado.add(medico);
 
-        System.out.println("Se ha añadido al Medico: " + nombreMedico);
-        
-    }    
-}
+        System.out.println("Se ha añadido al Medico: " + medico.getNombre());
 
+    }
+
+    public static void mostrarMedicos() {
+        if (medicoRegistrado.isEmpty()) {
+            System.out.println("No hay médicos registrados.\n");
+        } else {
+            System.out.println("Lista de Médicos Registrados:");
+            for (Medico medico : medicoRegistrado) {
+                Medico med= medico;
+                System.out.println("-Nombre: "+med.getNombre()+", Especialidad: "+med.getEspecialidades()+", Contacto: "+med.getTelefono());
+            }
+        }
+    }
+}
