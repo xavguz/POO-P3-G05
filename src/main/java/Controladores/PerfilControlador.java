@@ -62,8 +62,9 @@ public class PerfilControlador {
         for (Perfil usuario:listaUsuario){
             if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)){
                 encontrado = true;
-                System.out.println("\nHola, " + nombre + " que quieres hacer: ");
-                System.out.println("\n1.Administrar Medicamentos.\n2.Administrar Medicos.\n3.Administrar Actividad Fisica.\n");
+                System.out.println("\nBienvenido, " + nombre + " que quieres hacer: ");
+                System.out.println("\n1.Administrar Medicamentos.\n2.Administrar Medicos." +
+                        "\n3.Administrar Actividad Fisica.\n");
                 int opcion = sc.nextInt();
                 switch (opcion){
                     case 1:
@@ -74,7 +75,6 @@ public class PerfilControlador {
                         switch (opcion){
                             case 1:
                                 MedicinaControlador.añadirMedicina();
-
                                 break;
                             case 2:
                                 break;

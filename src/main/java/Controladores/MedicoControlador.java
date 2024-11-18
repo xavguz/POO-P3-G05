@@ -1,5 +1,5 @@
 package Controladores;
-import modelo.Medico;
+import modelo.cita.Medico;
 import modelo.cita.enums.Especialidades;
 import java.util.ArrayList;
 import java.util.Scanner;

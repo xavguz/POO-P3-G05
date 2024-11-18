@@ -19,6 +19,7 @@ public class MedicinaControlador {
         float dosis;
         int opcion;
         ArrayList<String> diasSeleccionados = new ArrayList<String>();
+        int variable;
 
         System.out.print("Nombre del Medicamento: ");
         nombreMedicamento = sc.nextLine();
@@ -27,8 +28,10 @@ public class MedicinaControlador {
         cantidadUnidades= sc.nextFloat();
         
         System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
+        variable = 1;
         for (Presentacion p : Presentacion.values()) {
-            System.out.println(p);
+            System.out.println(variable + ". " + p);
+            variable++;
         }
         opcion = sc.nextInt();
         switch (opcion) {
@@ -51,14 +54,18 @@ public class MedicinaControlador {
                 presentacion = Presentacion.POLVO.name();
                 break;
             default:
-                presentacion = Presentacion.PASTILLA.name();
+                presentacion = null;
+                break;
 
         }
 
         System.out.println("Seleccione la frecuencia (Ingrese un numero del 1 al 6):");
+        variable = 1;
         for (Frecuencia f : Frecuencia.values()) {
-            System.out.println(f);
+            System.out.println(variable + ". "+f);
+            variable++;
         }
+
         opcion = sc.nextInt();
         sc.nextLine();
         switch (opcion) {
@@ -70,9 +77,10 @@ public class MedicinaControlador {
                 break;
             case 3:
                 int n = 0;
-
+                variable = 1;
                 for(Dias dia : Dias.values()) {
-                    System.out.println(dia);
+                    System.out.println(variable + ". " +dia);
+                    variable++;
                 }
 
                 while(n == 0) {
@@ -103,12 +111,14 @@ public class MedicinaControlador {
                 frecuencia = "CADA_" + meses + "_DIAS";
                 break;
             default:
-                frecuencia = Frecuencia.CADA_DIA.name();
+                frecuencia = null;
         }
 
         System.out.println("Seleccione la frecuencia en el dia (Ingrese un numero del 1 al 4):");
+        variable = 1;
         for (FrecuenciaDia fDia : FrecuenciaDia.values()) {
-            System.out.println(fDia);
+            System.out.println(variable + ". " + fDia);
+            variable++;
         }
         opcion = sc.nextInt();
         switch (opcion) {
@@ -126,13 +136,14 @@ public class MedicinaControlador {
                 frecuenciaDia = sc.nextLine();
                 break;
             default:
-                frecuenciaDia = FrecuenciaDia.UNA_VEZ_AL_DIA.name();
+                frecuenciaDia = null;
         }
 
-        System.out.println("Ingrese la dosis a tomar de la medicina: ");
+        System.out.println("Ingrese la dosis a tomar de la medicina (gramos): ");
         dosis = sc.nextFloat();
 
-        Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades, presentacion, frecuencia, frecuenciaDia, dosis);
+        Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,
+                presentacion, frecuencia, frecuenciaDia, dosis);
         System.out.println("Se añadio la medicina " + medicina);
     }
 }

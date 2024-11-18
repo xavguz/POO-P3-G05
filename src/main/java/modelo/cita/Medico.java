@@ -4,12 +4,12 @@ import modelo.cita.enums.Especialidades;
 
 public class Medico {
     private String nombre;
-    private Especialidades especialidades;
+    private String especialidades;
     private String telefono;
     private String email;
     private String direccion;
 
-    public Medico(String nombre, Especialidades especialidades,
+    public Medico(String nombre, String especialidades,
                   String telefono, String email, String direccion){
         this.nombre = nombre;
         this.especialidades = especialidades;
@@ -26,11 +26,11 @@ public class Medico {
         this.nombre = nombre;
     }
 
-    public Especialidades getEspecialidades() {
+    public String getEspecialidades() {
         return especialidades;
     }
 
-    public void setEspecialidades(Especialidades especialidades) {
+    public void setEspecialidades(String especialidades) {
         this.especialidades = especialidades;
     }
 
