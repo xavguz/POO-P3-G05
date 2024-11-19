@@ -16,6 +16,7 @@ public class MedicinaControlador {
     public static void añadirMedicina(){
 
         ArrayList<String> diasSeleccionados = new ArrayList<String>();
+        ArrayList<String> horas = new ArrayList<String>();
         String nombreMedicamento;
         float cantidadUnidades;
         String presentacion;
@@ -101,6 +102,7 @@ public class MedicinaControlador {
                     }
                 }
                 frecuencia = String.join(",", diasSeleccionados);
+                diasSeleccionados.clear();
                 break;
             case 4:
                 System.out.println("Cantidad de días: ");
@@ -137,28 +139,36 @@ public class MedicinaControlador {
                 frecuenciaDia = FrecuenciaDia.UNA_VEZ_AL_DIA.name();
                 System.out.println("Ingrese la hora para la toma (hh:mm): ");
                 hora = sc.nextLine();
+                frecuenciaDia += "[ " + hora + " ]";
                 break;
             case 2:
-                frecuenciaDia = FrecuenciaDia.DOS_VECES_AL_DIA.name();
+                frecuenciaDia = FrecuenciaDia.DOS_VECES_AL_DIA.name() + "[ ";
                 contador = 0;
                 while(contador < 2){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");
                     hora = sc.nextLine();
+                    horas.add(hora);
                     contador++;
                 }
+                frecuenciaDia += String.join("/",horas) + " ]";
+                horas.clear();
                 break;
             case 3:
-                frecuenciaDia = FrecuenciaDia.TRES_VECES_AL_DIA.name();
+                frecuenciaDia = FrecuenciaDia.TRES_VECES_AL_DIA.name() + "[ ";
                 contador = 0;
                 while(contador < 3){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");
                     hora = sc.nextLine();
+                    horas.add(hora);
                     contador++;
                 }
+                frecuenciaDia += String.join("/",horas) + " ]";
+                horas.clear();
 
                 break;
             default:
                 frecuenciaDia = null;
+                break;
         }
 
         System.out.println("Ingrese la dosis a tomar de la medicina (gramos): ");
@@ -189,6 +199,6 @@ public class MedicinaControlador {
                 break;
             case 3:
                 break;
-            }
+        }
     }
 }
