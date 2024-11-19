@@ -28,8 +28,8 @@ public class PerfilControlador {
         return opcion;
     }
     
-    public static void  CrearPerfil(){
-        
+    public static void  CrearPerfil() {
+
         System.out.println("Ingrese su nombre: ");
         String nombre = sc.nextLine();
         System.out.println("Ingrese su relación: ");
@@ -37,21 +37,20 @@ public class PerfilControlador {
         System.out.println("Ingrese su email(NO obligatorio): ");
         String email = sc.nextLine();
 
-        if (!email.isEmpty()){
-            Perfil perfil = new Perfil(nombre,relacion,email);
+        if (!email.isEmpty()) {
+            Perfil perfil = new Perfil(nombre, relacion, email);
+            listaUsuario.add(perfil);
+
+        } else {
+            Perfil perfil = new Perfil(nombre, relacion, "No tiene email.");
             listaUsuario.add(perfil);
         }
-        else {
-            Perfil perfil = new Perfil(nombre,relacion,"No tiene email.");
-            listaUsuario.add(perfil);
-        }
-        System.out.println("Se ha creado un nuevo perfil.");
     }
 
-    public static void SeleccionarPerfil(ArrayList<Perfil> listaUsuarios){
-        
+    public static void SeleccionarPerfil (ArrayList < Perfil > listaUsuarios) {
+
         System.out.println("-----------------\nLista de perfiles\n-----------------");
-        for(Perfil usuario:listaUsuario){
+        for (Perfil usuario : listaUsuario) {
             System.out.printf("- " + usuario.getNombreUsuario() + "\n");
         }
         System.out.println("Seleccine un perfil: ");
@@ -59,20 +58,20 @@ public class PerfilControlador {
         String nombre = sc.nextLine();
         boolean encontrado = false;
 
-        for (Perfil usuario:listaUsuario){
-            if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)){
+        for (Perfil usuario : listaUsuario) {
+            if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)) {
                 encontrado = true;
                 System.out.println("\nBienvenido, " + nombre + " que quieres hacer: ");
                 System.out.println("\n1.Administrar Medicamentos.\n2.Administrar Medicos." +
                         "\n3.Administrar Actividad Fisica.\n");
                 int opcion = sc.nextInt();
-                switch (opcion){
+                switch (opcion) {
                     case 1:
                         System.out.println("Escoja lo que desee hacer: \n");
                         System.out.println("1.Añadir Medicina.\n2.Eliminar Medicina.\n3.Registrar Toma.");
                         opcion = sc.nextInt();
-                        
-                        switch (opcion){
+
+                        switch (opcion) {
                             case 1:
                                 MedicinaControlador.añadirMedicina();
                                 break;
@@ -80,15 +79,16 @@ public class PerfilControlador {
                                 break;
                             case 3:
                                 break;
-                        }
-                    break;
+                            }
+                        break;
+
+                    }
 
                 }
-
             }
-        }
-        if (encontrado == false){
+        if (encontrado == false) {
             System.out.println("\nNo existe el usuario.");
         }
     }
 }
+

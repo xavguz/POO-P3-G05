@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.enums.*;
 import modelo.medicina.*;
+import modelo.Fecha;
 
 public class MedicinaControlador {
     public static ArrayList <Medicina> listaMedicinas = new ArrayList<>();
@@ -11,6 +12,7 @@ public class MedicinaControlador {
 
     public static void añadirMedicina(){
 
+        ArrayList<String> diasSeleccionados = new ArrayList<String>();
         String nombreMedicamento;
         float cantidadUnidades;
         String presentacion;
@@ -18,8 +20,8 @@ public class MedicinaControlador {
         String frecuenciaDia;
         float dosis;
         int opcion;
-        ArrayList<String> diasSeleccionados = new ArrayList<String>();
         int variable;
+        String hora;
 
         System.out.print("Nombre del Medicamento: ");
         nombreMedicamento = sc.nextLine();
@@ -120,20 +122,35 @@ public class MedicinaControlador {
             System.out.println(variable + ". " + fDia);
             variable++;
         }
+
         opcion = sc.nextInt();
+        sc.nextLine();
+
+        int contador;
         switch (opcion) {
             case 1:
                 frecuenciaDia = FrecuenciaDia.UNA_VEZ_AL_DIA.name();
+                System.out.println("Ingrese la hora para la toma (hh:mm): ");
+                hora = sc.nextLine();
                 break;
             case 2:
                 frecuenciaDia = FrecuenciaDia.DOS_VECES_AL_DIA.name();
+                contador = 0;
+                while(contador < 2){
+                    System.out.println("Ingrese la hora para la toma (hh:mm): ");
+                    hora = sc.nextLine();
+                    contador++;
+                }
                 break;
             case 3:
                 frecuenciaDia = FrecuenciaDia.TRES_VECES_AL_DIA.name();
-                break;
-            case 4:
-                System.out.println("Ingrese la hora para cada toma(Formato 24 horas):"); 
-                frecuenciaDia = sc.nextLine();
+                contador = 0;
+                while(contador < 3){
+                    System.out.println("Ingrese la hora para la toma (hh:mm): ");
+                    hora = sc.nextLine();
+                    contador++;
+                }
+
                 break;
             default:
                 frecuenciaDia = null;
@@ -145,5 +162,6 @@ public class MedicinaControlador {
         Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,
                 presentacion, frecuencia, frecuenciaDia, dosis);
         System.out.println("Se añadio la medicina " + medicina);
+
     }
 }

@@ -8,6 +8,9 @@ public class Fecha {
         this.dia = dia;
         this.hora = hora;
     }
+    public Fecha(String hora){
+        this.hora = hora;
+    }
 
     public String getDia() {
         return dia;
