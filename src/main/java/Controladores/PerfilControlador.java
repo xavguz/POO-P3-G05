@@ -34,10 +34,13 @@ public class PerfilControlador {
         int opcion;
         
         do {
-            System.out.println("\n1. Administrar Medicamentos.\n2. Administrar Médicos.\n3. Administrar Citas Médicas.\n");
+            System.out.println("\n1. Administrar Medicamentos.\n" + //
+                                "2. Administrar Médicos.\n" + //
+                                "3. Administrar Citas Médicas.\n" + //
+                                "4. Volver.");
             opcion = sc.nextInt();
             sc.nextLine();
-        }while(opcion == 1 && opcion == 2 && opcion == 3);
+        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
         return opcion;
     }
     
@@ -80,8 +83,7 @@ public class PerfilControlador {
             }
             else {
                 System.out.println("El perfil ya existe");
-            }
-               
+            }    
         }
     }
 
@@ -109,7 +111,12 @@ public class PerfilControlador {
                             MedicinaControlador.administrarMedicamento();
                             break;
                         case 2:
-                            contador++;
+                            MedicoControlador.administrarMedico();
+                            break;
+                        case 3:
+                            break;
+                        case 4:
+                        contador++;
                             break;
     
                         }

@@ -5,10 +5,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MedicoControlador {
-    public static ArrayList<Medico> medicoRegistrado = new ArrayList<>();
+    public static ArrayList<Medico> listaMedicos = new ArrayList<>();
     static Scanner sc= new Scanner(System.in);
     
-    public static void AñadirMedico(){
+    public static int OpcionesMedico(){
+        int opcion;
+        
+        do {
+            System.out.println("\n1. Añadir Médico.\n2. Volver.\n");
+            opcion = sc.nextInt();
+            sc.nextLine();
+        }while(opcion == 1 && opcion == 2);
+        return opcion;
+    }
+
+    public static void añadirMedico(){
         
         String nombreMedico;
         String especialidad;
@@ -71,21 +82,42 @@ public class MedicoControlador {
         direccion= sc.nextLine();
 
         Medico medico = new Medico(nombreMedico, especialidad, numeroTelefono, email, direccion);
-        medicoRegistrado.add(medico);
+        listaMedicos.add(medico);
 
-        System.out.println("Se ha añadido al Medico: " + medico.getNombre());
+        System.out.println("Se ha añadido al Medico: " + mostrarMedico(medico));
 
     }
 
-    public static void mostrarMedicos() {
-        if (medicoRegistrado.isEmpty()) {
-            System.out.println("No hay médicos registrados.\n");
+    public static String mostrarMedico(Medico med) {
+        if (listaMedicos.isEmpty()) {
+            return "No hay médicos registrados.\n";
         } else {
-            System.out.println("Lista de Médicos Registrados:");
-            for (Medico medico : medicoRegistrado) {
-                Medico med= medico;
-                System.out.println("-Nombre: "+med.getNombre()+", Especialidad: "+med.getEspecialidades()+", Contacto: "+med.getTelefono());
-            }
+            return "Nombre: " + med.getNombre() + //
+                    ", Especialidad: "+med.getEspecialidades() + //
+                    ", Contacto: "+med.getTelefono();
         }
     }
+
+    public static void administrarMedico(){
+        
+        System.out.println("---------------\nLista de Médicos\n---------------");
+        for (Medico m: listaMedicos){
+            System.out.println("- " + m);
+        }
+        int contador = 0;
+        while(contador == 0){
+            int opcion = OpcionesMedico();
+            switch (opcion) {
+                case 1:
+                    añadirMedico();
+                    break;
+            
+                case 2:
+                    contador++;
+                    break;
+            }
+        }
+        
+    }  
 }
+

@@ -12,6 +12,19 @@ public class MedicinaControlador {
     public static ArrayList<Medicina> getListaMedicinas() {
         return listaMedicinas;
     }
+    public static int OpcionesMedicamentos(){
+        int opcion;
+        
+        do {
+            System.out.println("\n1. Añadir Medicina.\n" + //
+                                "2. Eliminar Medicina.\n" + //
+                                "3. Registrar Toma.\n" + //
+                                "4. Volver.\n");
+            opcion = sc.nextInt();
+            sc.nextLine();
+        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
+        return opcion;
+    }
 
     public static void añadirMedicina(){
 
@@ -207,18 +220,22 @@ public class MedicinaControlador {
         for(Medicina medicina: listaMedicinas){
             System.out.printf("- " + medicina + "\n");
         }
-
-        System.out.println("Escoja lo que desee hacer: \n");
-        System.out.println("1.Añadir Medicina.\n2.Eliminar Medicina.\n3.Registrar Toma.\n");
-        int opcion = sc.nextInt();
-        sc.nextLine();
-        switch (opcion) {
-            case 1:
-                MedicinaControlador.añadirMedicina();
-            case 2:
-                break;
-            case 3:
-                break;
+        int contador = 0;
+        while (contador == 0){
+            System.out.println("Escoja lo que desee hacer: \n");
+            int opcion = OpcionesMedicamentos();
+            sc.nextLine();
+            switch (opcion) {
+                case 1:
+                    añadirMedicina();
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    contador++;
+                    break;
+            }
         }
     }
 }

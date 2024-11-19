@@ -14,13 +14,13 @@ public class Main {
                 break;
                 case "b":
                     PerfilControlador.SeleccionarPerfil(PerfilControlador.getListaUsuario());
-                    contador++;
+                    //contador++;
                 break;
                 case "c":
                     contador++;
                     break;
             }
-            
+
         }
     }
 }
