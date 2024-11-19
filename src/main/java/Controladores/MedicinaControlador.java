@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import modelo.enums.*;
 import modelo.medicina.*;
-import modelo.Fecha;
 
 public class MedicinaControlador {
     public static ArrayList <Medicina> listaMedicinas = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
+
+    public static ArrayList<Medicina> getListaMedicinas() {
+        return listaMedicinas;
+    }
 
     public static void añadirMedicina(){
 
@@ -25,9 +28,11 @@ public class MedicinaControlador {
 
         System.out.print("Nombre del Medicamento: ");
         nombreMedicamento = sc.nextLine();
+        sc.nextLine();
 
         System.out.print("Cantidad de unidades disponibles a consumir: ");
         cantidadUnidades= sc.nextFloat();
+        sc.nextLine();
         
         System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
         variable = 1;
@@ -161,7 +166,29 @@ public class MedicinaControlador {
 
         Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,
                 presentacion, frecuencia, frecuenciaDia, dosis);
+        listaMedicinas.add(medicina);
         System.out.println("Se añadio la medicina " + medicina);
+    }
+    
+    public static void administrarMedicamento(){
+        
+        System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
+        System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
+        for(Medicina medicina: listaMedicinas){
+            System.out.printf("- " + medicina + "\n");
+        }
 
+        System.out.println("Escoja lo que desee hacer: \n");
+        System.out.println("1.Añadir Medicina.\n2.Eliminar Medicina.\n3.Registrar Toma.\n");
+        int opcion = sc.nextInt();
+        sc.nextLine();
+        switch (opcion) {
+            case 1:
+                MedicinaControlador.añadirMedicina();
+            case 2:
+                break;
+            case 3:
+                break;
+            }
     }
 }

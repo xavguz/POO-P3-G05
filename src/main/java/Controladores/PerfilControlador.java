@@ -3,6 +3,8 @@ package Controladores;
 import modelo.Perfil;
 import java.util.ArrayList;
 import java.util.Scanner;
+import Controladores.MedicinaControlador;
+import modelo.medicina.*;
 
 public class PerfilControlador {
 
@@ -13,7 +15,7 @@ public class PerfilControlador {
         return listaUsuario;
     }
 
-    public static String Opciones(){
+    public static String OpcionesIniciales(){
         String opcion;
         System.out.println("-----------------\nLista de perfiles\n-----------------");
 
@@ -27,7 +29,29 @@ public class PerfilControlador {
         }while(!opcion.equals("a") && !opcion.equals("b") && !opcion.equals("c"));
         return opcion;
     }
+
+    public static int OpcionesAdministrar(){
+        int opcion;
+        
+        do {
+            System.out.println("\n1. Administrar Medicamentos.\n2. Administrar Médicos.\n3. Administrar Citas Médicas.\n");
+            opcion = sc.nextInt();
+            sc.nextLine();
+        }while(opcion == 1 && opcion == 2 && opcion == 3);
+        return opcion;
+    }
     
+    private static boolean verificarPerfil(ArrayList<Perfil> lista,Perfil p){
+        for (Perfil perfil :lista){
+            if (perfil.getNombreUsuario().equalsIgnoreCase(p.getNombreUsuario())&&
+                perfil.getRelacion().equalsIgnoreCase(p.getRelacion())&&
+                perfil.getEmail().equalsIgnoreCase(p.getEmail())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void  CrearPerfil() {
 
         System.out.println("Ingrese su nombre: ");
@@ -39,11 +63,25 @@ public class PerfilControlador {
 
         if (!email.isEmpty()) {
             Perfil perfil = new Perfil(nombre, relacion, email);
-            listaUsuario.add(perfil);
 
-        } else {
+            if (!verificarPerfil(listaUsuario,perfil)) {
+                listaUsuario.add(perfil);
+            }
+            else {
+                System.out.println("El perfil ya existe");
+            }
+            
+        } 
+        else {
             Perfil perfil = new Perfil(nombre, relacion, "No tiene email.");
-            listaUsuario.add(perfil);
+            
+            if (!verificarPerfil(listaUsuario,perfil)) {
+                listaUsuario.add(perfil);
+            }
+            else {
+                System.out.println("El perfil ya existe");
+            }
+               
         }
     }
 
@@ -61,31 +99,23 @@ public class PerfilControlador {
         for (Perfil usuario : listaUsuario) {
             if (usuario.getNombreUsuario().equalsIgnoreCase(nombre)) {
                 encontrado = true;
-                System.out.println("\nBienvenido, " + nombre + " que quieres hacer: ");
-                System.out.println("\n1.Administrar Medicamentos.\n2.Administrar Medicos." +
-                        "\n3.Administrar Actividad Fisica.\n");
-                int opcion = sc.nextInt();
-                switch (opcion) {
-                    case 1:
-                        System.out.println("Escoja lo que desee hacer: \n");
-                        System.out.println("1.Añadir Medicina.\n2.Eliminar Medicina.\n3.Registrar Toma.");
-                        opcion = sc.nextInt();
+                int contador = 0;
 
-                        switch (opcion) {
-                            case 1:
-                                MedicinaControlador.añadirMedicina();
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                            }
-                        break;
-
-                    }
-
-                }
+                while (contador == 0){
+                    System.out.println("Hola, " + nombre + " que desea hacer:");
+                    int opcion = OpcionesAdministrar();
+                    switch (opcion) {
+                        case 1:
+                            MedicinaControlador.administrarMedicamento();
+                            break;
+                        case 2:
+                            contador++;
+                            break;
+    
+                        }
+                }   
             }
+        }
         if (encontrado == false) {
             System.out.println("\nNo existe el usuario.");
         }

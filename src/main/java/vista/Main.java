@@ -7,7 +7,7 @@ public class Main {
         int contador = 0;
 
         while(contador == 0){
-            String opcion = PerfilControlador.Opciones();
+            String opcion = PerfilControlador.OpcionesIniciales();
             switch(opcion){
                 case "a":
                     PerfilControlador.CrearPerfil();

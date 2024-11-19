@@ -75,5 +75,9 @@ public class Medicina {
     public void setDosis(float dosis){
         this.dosis = dosis;
     }
+    @Override
+    public String toString(){
+        return nombreMedicamento +" / "+ unidadesDisponibles +" / "+ presentacion +" / "+ frecuencia +" / "+ frecuenciaDia +" / "+ dosis;
+    }
 }
 

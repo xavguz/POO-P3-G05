@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Objects;
+
 public class Perfil {
 
     private String nombreUsuario;
@@ -39,4 +41,13 @@ public class Perfil {
     public void setEmail(String email){
         this.email = email;
     }
+    /*  @Override
+    public boolean equals(Object p) {
+        if (this == p) return true;
+        if (o == null || getClass() != p.getClass()) return false;
+        Perfil perfil = (Perfil) p;
+        return Objects.equals(nombreUsuario, perfil.nombreUsuario) &&
+               Objects.equals(relacion, perfil.relacion) &&
+               Objects.equals(email, perfil.email);*/
+               
 }
