@@ -92,16 +92,36 @@ public class MedicinaControlador {
                 }
 
                 while(n == 0) {
-                    System.out.print("Seleccionar los días (Ingrese uno por uno): ");
-                    String dias= sc.nextLine();
-                    if (!dias.isEmpty()){
-                        diasSeleccionados.add(dias);
-                    }
-                    else {
-                        n += 1;
+                    System.out.print("Seleccionar los días (del 1 al 7):\n Presione ENTER para continuar. ");
+                    String dia = sc.nextLine();
+                    switch (dia) {
+                        case "1":
+                            diasSeleccionados.add("LUNES");
+                            break;
+                        case "2":
+                            diasSeleccionados.add("MARTES");
+                            break;
+                        case "3":
+                            diasSeleccionados.add("MIERCOLES");
+                            break;
+                        case "4":
+                            diasSeleccionados.add("JUEVES");
+                            break;
+                        case "5":
+                            diasSeleccionados.add("VIERNES");
+                            break;
+                        case "6":
+                            diasSeleccionados.add("SABADO");
+                            break;
+                        case "7":
+                            diasSeleccionados.add("DOMINGO");
+                            break;
+                        default:
+                            n++;
+                            break;
                     }
                 }
-                frecuencia = String.join(",", diasSeleccionados);
+                frecuencia = "DIAS [ " + String.join("/", diasSeleccionados) + " ] ";
                 diasSeleccionados.clear();
                 break;
             case 4:
@@ -139,10 +159,10 @@ public class MedicinaControlador {
                 frecuenciaDia = FrecuenciaDia.UNA_VEZ_AL_DIA.name();
                 System.out.println("Ingrese la hora para la toma (hh:mm): ");
                 hora = sc.nextLine();
-                frecuenciaDia += "[ " + hora + " ]";
+                frecuenciaDia += " [ " + hora + " ]";
                 break;
             case 2:
-                frecuenciaDia = FrecuenciaDia.DOS_VECES_AL_DIA.name() + "[ ";
+                frecuenciaDia = FrecuenciaDia.DOS_VECES_AL_DIA.name() + " [ ";
                 contador = 0;
                 while(contador < 2){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");
@@ -154,7 +174,7 @@ public class MedicinaControlador {
                 horas.clear();
                 break;
             case 3:
-                frecuenciaDia = FrecuenciaDia.TRES_VECES_AL_DIA.name() + "[ ";
+                frecuenciaDia = FrecuenciaDia.TRES_VECES_AL_DIA.name() + " [ ";
                 contador = 0;
                 while(contador < 3){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");

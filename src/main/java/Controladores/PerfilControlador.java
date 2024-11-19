@@ -41,7 +41,7 @@ public class PerfilControlador {
         return opcion;
     }
     
-    private static boolean verificarPerfil(ArrayList<Perfil> lista,Perfil p){
+    /*private static boolean verificarPerfil(ArrayList<Perfil> lista,Perfil p){
         for (Perfil perfil :lista){
             if (perfil.getNombreUsuario().equalsIgnoreCase(p.getNombreUsuario())&&
                 perfil.getRelacion().equalsIgnoreCase(p.getRelacion())&&
@@ -50,7 +50,7 @@ public class PerfilControlador {
             }
         }
         return false;
-    }
+    }*/
 
     public static void  CrearPerfil() {
 
@@ -64,7 +64,7 @@ public class PerfilControlador {
         if (!email.isEmpty()) {
             Perfil perfil = new Perfil(nombre, relacion, email);
 
-            if (!verificarPerfil(listaUsuario,perfil)) {
+            if (!listaUsuario.contains(perfil)) {
                 listaUsuario.add(perfil);
             }
             else {
@@ -75,7 +75,7 @@ public class PerfilControlador {
         else {
             Perfil perfil = new Perfil(nombre, relacion, "No tiene email.");
             
-            if (!verificarPerfil(listaUsuario,perfil)) {
+            if (!listaUsuario.contains(perfil)) {
                 listaUsuario.add(perfil);
             }
             else {
