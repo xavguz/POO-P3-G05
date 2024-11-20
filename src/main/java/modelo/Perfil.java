@@ -41,13 +41,13 @@ public class Perfil {
     public void setEmail(String email){
         this.email = email;
     }
+    
     @Override
     public boolean equals(Object p) {
         if (p != null && p instanceof Perfil) {
             Perfil perfil = (Perfil) p;
-            if (Objects.equals(nombreUsuario, perfil.nombreUsuario) &&
-                    Objects.equals(relacion, perfil.relacion) &&
-                    Objects.equals(email, perfil.email)){
+            if (Objects.equals(nombreUsuario.toLowerCase(), perfil.nombreUsuario.toLowerCase()) &&
+                    Objects.equals(relacion, perfil.relacion)){
                         return true;
                     }
             }
