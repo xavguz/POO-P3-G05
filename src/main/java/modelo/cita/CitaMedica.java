@@ -36,4 +36,8 @@ public class CitaMedica {
     public void setDoctor(Medico doctor) {
         this.doctor = doctor;
     }
+    @Override
+    public String toString(){
+        return titulo + " / " + doctor.getNombre() + "[ "+ doctor.getEspecialidades() + " ]" + " / " + fecha;
+    }
 }

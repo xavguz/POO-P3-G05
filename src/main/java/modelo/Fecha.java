@@ -26,4 +26,8 @@ public class Fecha {
     public void setHora(String hora) {
         this.hora = hora;
     }
+    @Override
+    public String toString(){
+        return "Dia: " + dia + ", hora: "+ hora;
+    }
 }

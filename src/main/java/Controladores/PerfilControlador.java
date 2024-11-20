@@ -121,6 +121,7 @@ public class PerfilControlador {
                             MedicoControlador.administrarMedico();
                             break;
                         case 3:
+                            CitasMedicasControlador.agregarCitas();
                             break;
                         case 4:
                         contador++;

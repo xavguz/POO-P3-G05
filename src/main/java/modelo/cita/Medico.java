@@ -1,7 +1,5 @@
 package modelo.cita;
 
-import modelo.cita.enums.Especialidades;
-
 public class Medico {
     private String nombre;
     private String especialidades;
@@ -56,5 +54,12 @@ public class Medico {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    @Override
+    public String toString(){
+        return "Nombre: " + nombre + //
+                    ", Especialidad: "+ especialidades + //
+                    ", Contacto: "+ telefono;
     }
 }

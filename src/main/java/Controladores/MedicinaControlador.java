@@ -2,6 +2,8 @@ package Controladores;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import modelo.Fecha;
 import modelo.enums.*;
 import modelo.medicina.*;
 
@@ -211,31 +213,6 @@ public class MedicinaControlador {
         System.out.println("Se añadio la medicina " + medicina);
     }
     
-    public static void administrarMedicamento(){
-
-        int contador = 0;
-        while (contador == 0){
-
-            mostrarListaMedicamento();
-
-            System.out.println("Escoja lo que desee hacer: ");
-            int opcion = OpcionesMedicamentos();
-            sc.nextLine();
-            switch (opcion) {
-                case 1:
-                    añadirMedicina();
-                    break;
-                case 2:
-                    eliminarMedicina();
-                    break;
-                case 3:
-                    break;
-                case 4:
-                    contador++;
-                    break;
-            }
-        }
-    }
     public static void eliminarMedicina(){
         ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
         String medicinaEliminar;
@@ -268,6 +245,7 @@ public class MedicinaControlador {
             administrarMedicamento();
         }
     }
+
     public static void mostrarListaMedicamento(){
         System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
         System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
@@ -277,5 +255,32 @@ public class MedicinaControlador {
             }
         }
         System.out.println("-----------------------------");
+    }
+    
+    public static void administrarMedicamento(){
+
+        int contador = 0;
+        while (contador == 0){
+
+            mostrarListaMedicamento();
+
+            System.out.println("Escoja lo que desee hacer: ");
+            int opcion = OpcionesMedicamentos();
+            sc.nextLine();
+            switch (opcion) {
+                case 1:
+                    añadirMedicina();
+                    break;
+                case 2:
+                    eliminarMedicina();
+                    break;
+                case 3:
+                    TomaMedicinaControlador.registrarToma();
+                    break;
+                case 4:
+                    contador++;
+                    break;
+            }
+        }
     }
 }
