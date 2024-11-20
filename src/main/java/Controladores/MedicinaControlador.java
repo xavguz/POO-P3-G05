@@ -215,14 +215,9 @@ public class MedicinaControlador {
 
         int contador = 0;
         while (contador == 0){
-            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
-            System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
-            if (!listaMedicinas.isEmpty()){
-                for(Medicina medicina: listaMedicinas){
-                    System.out.printf("- " + medicina + "\n");
-                }
-            }
-            System.out.println("---------------------------");
+
+            mostrarListaMedicamento();
+
             System.out.println("Escoja lo que desee hacer: ");
             int opcion = OpcionesMedicamentos();
             sc.nextLine();
@@ -231,7 +226,7 @@ public class MedicinaControlador {
                     añadirMedicina();
                     break;
                 case 2:
-                    eliminarMedicna();
+                    eliminarMedicina();
                     break;
                 case 3:
                     break;
@@ -241,9 +236,12 @@ public class MedicinaControlador {
             }
         }
     }
-    public static void eliminarMedicna(){
+    public static void eliminarMedicina(){
         ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
         String medicinaEliminar;
+
+        mostrarListaMedicamento();
+
         System.out.println("Ingresar la medicina a eliminar: ");
         medicinaEliminar = sc.nextLine();
 
@@ -252,12 +250,32 @@ public class MedicinaControlador {
                 medicinasEliminar.add(medicina);
             }
         }
-        listaMedicinas.removeAll(medicinasEliminar);
+        String consulta;
 
-        if (!medicinasEliminar.isEmpty()) {
-            System.out.println("Medicina eliminada.");
-        } else {
-            System.out.println("No se encontró la medicina.");
+        System.out.println("Esta seguro de eliminar la medicna (SI/NO): ");
+        consulta = sc.nextLine();
+
+
+        if (consulta.equalsIgnoreCase("si")) {
+            listaMedicinas.removeAll(medicinasEliminar);
+            if (!medicinasEliminar.isEmpty()) {
+                System.out.println("Medicina eliminada.");
+            } else {
+                System.out.println("No se encontró la medicina.");
+            }
         }
+        else {
+            administrarMedicamento();
+        }
+    }
+    public static void mostrarListaMedicamento(){
+        System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
+        System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
+        if (!listaMedicinas.isEmpty()){
+            for(Medicina medicina: listaMedicinas){
+                System.out.printf("- " + medicina + "\n");
+            }
+        }
+        System.out.println("-----------------------------");
     }
 }
