@@ -19,9 +19,15 @@ public class PerfilControlador {
         String opcion;
         System.out.println("-----------------\nLista de perfiles\n-----------------");
 
-        for(Perfil usuario:listaUsuario){
-            System.out.printf("- " + usuario.getNombreUsuario() + "\n");
+        if (!listaUsuario.isEmpty()){
+            for(Perfil usuario:listaUsuario){
+                System.out.printf("- " + usuario.getNombreUsuario() +
+                        " (" +usuario.getRelacion() + ")"+ "\n");
+            }
+        } else {
+            System.out.println("- No hay usuarios");
         }
+        System.out.println("-----------------");
 
         do {
             System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");

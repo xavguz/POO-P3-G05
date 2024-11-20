@@ -214,15 +214,18 @@ public class MedicinaControlador {
     }
     
     public static void administrarMedicamento(){
-        
-        System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
-        System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
-        for(Medicina medicina: listaMedicinas){
-            System.out.printf("- " + medicina + "\n");
-        }
+
         int contador = 0;
         while (contador == 0){
-            System.out.println("Escoja lo que desee hacer: \n");
+            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
+            System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
+            if (!listaMedicinas.isEmpty()){
+                for(Medicina medicina: listaMedicinas){
+                    System.out.printf("- " + medicina + "\n");
+                }
+            }
+            System.out.println("---------------------------");
+            System.out.println("Escoja lo que desee hacer: ");
             int opcion = OpcionesMedicamentos();
             sc.nextLine();
             switch (opcion) {
