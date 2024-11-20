@@ -21,7 +21,7 @@ public class MedicinaControlador {
                                 "3. Registrar Toma.\n" + //
                                 "4. Volver.\n");
             opcion = sc.nextInt();
-            sc.nextLine();
+
         }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
         return opcion;
     }
@@ -42,11 +42,9 @@ public class MedicinaControlador {
 
         System.out.print("Nombre del Medicamento: ");
         nombreMedicamento = sc.nextLine();
-        sc.nextLine();
 
         System.out.print("Cantidad de unidades disponibles a consumir: ");
         cantidadUnidades= sc.nextFloat();
-        sc.nextLine();
         
         System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
         variable = 1;
