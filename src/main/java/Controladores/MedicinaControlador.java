@@ -16,10 +16,10 @@ public class MedicinaControlador {
         int opcion;
         
         do {
-            System.out.println("\n1. Añadir Medicina.\n" + //
+            System.out.println("1. Añadir Medicina.\n" + //
                                 "2. Eliminar Medicina.\n" + //
                                 "3. Registrar Toma.\n" + //
-                                "4. Volver.\n");
+                                "4. Volver.");
             opcion = sc.nextInt();
 
         }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
@@ -45,7 +45,7 @@ public class MedicinaControlador {
 
         System.out.print("Cantidad de unidades disponibles a consumir: ");
         cantidadUnidades= sc.nextFloat();
-        
+
         System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
         variable = 1;
         for (Presentacion p : Presentacion.values()) {
@@ -229,7 +229,9 @@ public class MedicinaControlador {
             switch (opcion) {
                 case 1:
                     añadirMedicina();
+                    break;
                 case 2:
+                    eliminarMedicna();
                     break;
                 case 3:
                     break;
@@ -237,6 +239,25 @@ public class MedicinaControlador {
                     contador++;
                     break;
             }
+        }
+    }
+    public static void eliminarMedicna(){
+        ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
+        String medicinaEliminar;
+        System.out.println("Ingresar la medicina a eliminar: ");
+        medicinaEliminar = sc.nextLine();
+
+        for (Medicina medicina :listaMedicinas){
+            if(medicina.getNombreMedicamento().equalsIgnoreCase(medicinaEliminar)){
+                medicinasEliminar.add(medicina);
+            }
+        }
+        listaMedicinas.removeAll(medicinasEliminar);
+
+        if (!medicinasEliminar.isEmpty()) {
+            System.out.println("Medicina eliminada.");
+        } else {
+            System.out.println("No se encontró la medicina.");
         }
     }
 }

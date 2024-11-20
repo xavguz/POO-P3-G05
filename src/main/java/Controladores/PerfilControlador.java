@@ -40,7 +40,7 @@ public class PerfilControlador {
         int opcion;
         
         do {
-            System.out.println("\n1. Administrar Medicamentos.\n" + //
+            System.out.println("1. Administrar Medicamentos.\n" + //
                                 "2. Administrar Médicos.\n" + //
                                 "3. Administrar Citas Médicas.\n" + //
                                 "4. Volver.");
@@ -99,6 +99,7 @@ public class PerfilControlador {
         for (Perfil usuario : listaUsuario) {
             System.out.printf("- " + usuario.getNombreUsuario() + "\n");
         }
+        System.out.println("-----------------");
         System.out.println("Seleccine un perfil: ");
 
         String nombre = sc.nextLine();
