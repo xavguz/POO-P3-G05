@@ -3,8 +3,6 @@ package Controladores;
 import modelo.Perfil;
 import java.util.ArrayList;
 import java.util.Scanner;
-import Controladores.MedicinaControlador;
-import modelo.medicina.*;
 
 public class PerfilControlador {
 
@@ -121,7 +119,7 @@ public class PerfilControlador {
                             MedicoControlador.administrarMedico();
                             break;
                         case 3:
-                            CitasMedicasControlador.agregarCitas();
+                            CitasMedicasControlador.administrarCita();
                             break;
                         case 4:
                         contador++;
@@ -138,13 +136,13 @@ public class PerfilControlador {
     public static void inicio(){
         int contador = 0;
         while(contador == 0){
-            String opcion = PerfilControlador.OpcionesIniciales();
+            String opcion = OpcionesIniciales();
             switch(opcion){
                 case "a":
-                    PerfilControlador.CrearPerfil();
+                    CrearPerfil();
                     break;
                 case "b":
-                    PerfilControlador.SeleccionarPerfil(PerfilControlador.getListaUsuario());
+                    SeleccionarPerfil(listaUsuario);
                     //contador++;
                     break;
                 case "c":

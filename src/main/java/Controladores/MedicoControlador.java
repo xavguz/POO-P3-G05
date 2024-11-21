@@ -99,9 +99,15 @@ public class MedicoControlador {
         int contador = 0;
         while(contador == 0){
             
-            System.out.println("---------------\nLista de Médicos\n---------------");
-            for (Medico m: listaMedicos){
-                System.out.println("- " + m);
+            if (listaMedicos.isEmpty()){
+                System.out.println("------------------\n Lista de Médicos \n------------------");
+                System.out.println("- No hay Médicos.\n------------------");
+            }
+            else{
+                System.out.println("------------------\n Lista de Médicos \n------------------");
+                for (Medico m: listaMedicos){
+                    System.out.println("- " + m);
+                }
             }
 
             int opcion = OpcionesMedico();
@@ -114,8 +120,7 @@ public class MedicoControlador {
                     contador++;
                     break;
             }
-        }
-        
+        }  
     }  
 }
 

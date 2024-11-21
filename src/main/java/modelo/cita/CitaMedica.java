@@ -38,6 +38,6 @@ public class CitaMedica {
     }
     @Override
     public String toString(){
-        return titulo + " / " + doctor.getNombre() + "[ "+ doctor.getEspecialidades() + " ]" + " / " + fecha;
+        return titulo + " / " + doctor.getNombre() + " ("+ doctor.getEspecialidades() + ")" + " / " + fecha;
     }
 }

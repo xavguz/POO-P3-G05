@@ -247,14 +247,19 @@ public class MedicinaControlador {
     }
 
     public static void mostrarListaMedicamento(){
-        System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
-        System.out.println("\nNOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA / DOSIS\n");
-        if (!listaMedicinas.isEmpty()){
+        if (listaMedicinas.isEmpty()){
+            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
+            System.out.println("NOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA [HORA] / DOSIS\n");
+            System.out.println("- Lista vacia\n-----------------------------");
+        }
+        else{
+            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
+            System.out.println("NOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA [HORA] / DOSIS\n");
             for(Medicina medicina: listaMedicinas){
                 System.out.printf("- " + medicina + "\n");
             }
+            System.out.println("-----------------------------");
         }
-        System.out.println("-----------------------------");
     }
     
     public static void administrarMedicamento(){
