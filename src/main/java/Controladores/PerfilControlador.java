@@ -41,10 +41,11 @@ public class PerfilControlador {
             System.out.println("1. Administrar Medicamentos.\n" + //
                                 "2. Administrar Médicos.\n" + //
                                 "3. Administrar Citas Médicas.\n" + //
-                                "4. Volver.");
+                                "4. Administrar Actividad Fisica.\n" + //
+                                "5. Volver.");
             opcion = sc.nextInt();
             sc.nextLine();
-        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
+        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4 && opcion == 5);
         return opcion;
     }
     
@@ -122,10 +123,13 @@ public class PerfilControlador {
                             CitasMedicasControlador.administrarCita();
                             break;
                         case 4:
+                            ActividadFisicaControlador.administrarActividadFisica();
+                            break;
+                        case 5:
                         contador++;
                             break;
     
-                        }
+                    }
                 }   
             }
         }
@@ -133,6 +137,7 @@ public class PerfilControlador {
             System.out.println("\nNo existe el usuario.");
         }
     }
+
     public static void inicio(){
         int contador = 0;
         while(contador == 0){

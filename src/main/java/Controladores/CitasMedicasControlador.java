@@ -72,22 +72,22 @@ public class CitasMedicasControlador {
     }
 
     public static void administrarCita(){
+        int contador = 0;
 
-    mostrarListaCitas();
-    
-    System.out.println("Escoja lo que desee hacer:");
-    int contador = 0;
-    while (contador == 0){
-        int opcion = opcionesCita();
-        switch (opcion) {
-            case 1:
-                agregarCitas();
-                break;
-            case 2:
-                contador++;
-                break;
+        while (contador == 0){
+
+            mostrarListaCitas();
+            System.out.println("Escoja lo que desee hacer:");
+            int opcion = opcionesCita();
+            
+            switch (opcion) {
+                case 1:
+                    agregarCitas();
+                    break;
+                case 2:
+                    contador++;
+                    break;
+            }
         }
-    }
-
     }
 }

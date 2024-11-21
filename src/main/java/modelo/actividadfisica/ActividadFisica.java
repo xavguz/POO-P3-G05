@@ -1,17 +1,15 @@
 package modelo.actividadfisica;
 
 import modelo.Fecha;
-import modelo.actividadfisica.enums.Actividad;
-import modelo.actividadfisica.enums.Horario;
 
 public class ActividadFisica {
     private Fecha fecha;
-    private Actividad actividad;
+    private String actividad;
     private String duracion;
-    private Horario horario;
+    private String horario;
 
-    public ActividadFisica(Fecha fecha, Actividad actividad,
-                           String duracion, Horario horario){
+    public ActividadFisica(Fecha fecha, String actividad,
+                           String duracion, String horario){
         this.fecha = fecha;
         this.actividad = actividad;
         this.duracion = duracion;
@@ -26,11 +24,11 @@ public class ActividadFisica {
         this.fecha = fecha;
     }
 
-    public Actividad getActividad() {
+    public String getActividad() {
         return actividad;
     }
 
-    public void setActividad(Actividad actividad) {
+    public void setActividad(String actividad) {
         this.actividad = actividad;
     }
 
@@ -42,11 +40,15 @@ public class ActividadFisica {
         this.duracion = duracion;
     }
 
-    public Horario getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(Horario horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
+    }
+
+    public String toString(){
+        return fecha + " / " + actividad + " / " + duracion;
     }
 }

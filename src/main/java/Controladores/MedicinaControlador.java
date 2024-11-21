@@ -2,8 +2,6 @@ package Controladores;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import modelo.Fecha;
 import modelo.enums.*;
 import modelo.medicina.*;
 
