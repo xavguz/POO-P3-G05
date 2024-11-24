@@ -26,4 +26,9 @@ public class TomaMedicina {
     public void setFecha(Fecha fecha) {
         this.fecha = fecha;
     }
+
+    public String toString(){
+        return medicina + " / " + fecha;
+    }
+
 }

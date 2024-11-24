@@ -6,7 +6,6 @@ import modelo.Fecha;
 import modelo.actividadfisica.ActividadFisica;
 import modelo.actividadfisica.enums.Actividad;
 import modelo.actividadfisica.enums.Horario;
-import modelo.cita.CitaMedica;
 
 public class ActividadFisicaControlador {
 

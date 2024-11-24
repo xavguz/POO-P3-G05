@@ -1,18 +1,28 @@
 package Controladores;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import modelo.PerfilModelo;
 import modelo.enums.*;
 import modelo.medicina.*;
+import vista.MedicinaVista;
+import modelo.medicina.MedicinaModelo;
 
 public class MedicinaControlador {
-    public static ArrayList <Medicina> listaMedicinas = new ArrayList<>();
-    static Scanner sc = new Scanner(System.in);
 
-    public static ArrayList<Medicina> getListaMedicinas() {
-        return listaMedicinas;
+    private MedicinaModelo medicinaModelo;
+    private MedicinaVista medicinaVista;
+    private PerfilModelo perfilModelo;
+    private TomaMedicinaControlador tomaMedicinaControlador;
+    
+    public MedicinaControlador(MedicinaModelo medicinaModelo, MedicinaVista medicinaVista, 
+                                PerfilModelo perfilModelo, TomaMedicinaControlador tomaMedicinaControlador){
+        this.medicinaModelo = medicinaModelo;
+        this.medicinaVista = medicinaVista;
+        this.perfilModelo = perfilModelo;
+        this.tomaMedicinaControlador = tomaMedicinaControlador;
     }
-    public static int OpcionesMedicamentos(){
+
+    public int OpcionesMedicamentos(){
         int opcion;
         
         do {
@@ -20,14 +30,14 @@ public class MedicinaControlador {
                                 "2. Eliminar Medicina.\n" + //
                                 "3. Registrar Toma.\n" + //
                                 "4. Volver.");
-            opcion = sc.nextInt();
+            opcion = medicinaVista.sc.nextInt();
 
         }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4);
         return opcion;
     }
 
-    public static void añadirMedicina(){
-
+    public void añadirMedicina(String nombre){
+        int i = perfilModelo.obtenerIndice(nombre);
         ArrayList<String> diasSeleccionados = new ArrayList<String>();
         ArrayList<String> horas = new ArrayList<String>();
         String nombreMedicamento;
@@ -41,10 +51,11 @@ public class MedicinaControlador {
         String hora;
 
         System.out.print("Nombre del Medicamento: ");
-        nombreMedicamento = sc.nextLine();
+        nombreMedicamento = medicinaVista.sc.nextLine();
 
         System.out.print("Cantidad de unidades disponibles a consumir: ");
-        cantidadUnidades= sc.nextFloat();
+        cantidadUnidades = medicinaVista.sc.nextFloat();
+        medicinaVista.sc.nextLine();
 
         System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
         variable = 1;
@@ -52,7 +63,8 @@ public class MedicinaControlador {
             System.out.println(variable + ". " + p);
             variable++;
         }
-        opcion = sc.nextInt();
+        opcion = medicinaVista.sc.nextInt();
+        medicinaVista.sc.nextLine();
         switch (opcion) {
             case 1:
                 presentacion = Presentacion.PASTILLA.name();
@@ -85,8 +97,8 @@ public class MedicinaControlador {
             variable++;
         }
 
-        opcion = sc.nextInt();
-        sc.nextLine();
+        opcion = medicinaVista.sc.nextInt();
+        medicinaVista.sc.nextLine();
         switch (opcion) {
             case 1:
                 frecuencia = Frecuencia.CADA_DIA.name();
@@ -104,7 +116,7 @@ public class MedicinaControlador {
 
                 while(n == 0) {
                     System.out.print("Seleccionar los días (del 1 al 7):\n Presione ENTER para continuar. ");
-                    String dia = sc.nextLine();
+                    String dia = medicinaVista.sc.nextLine();
                     switch (dia) {
                         case "1":
                             diasSeleccionados.add("LUNES");
@@ -137,17 +149,17 @@ public class MedicinaControlador {
                 break;
             case 4:
                 System.out.println("Cantidad de días: ");
-                String dias = sc.nextLine();
+                String dias = medicinaVista.sc.nextLine();
                 frecuencia = "CADA_" + dias + "_DIAS";
                 break;
             case 5:
                 System.out.println("Cantidad de semanas: ");
-                String semanas = sc.nextLine();
+                String semanas = medicinaVista.sc.nextLine();
                 frecuencia = "CADA_" + semanas + "_SEMANAS";
                 break;
             case 6:
                 System.out.println("Cantidad de meses: ");
-                String meses = sc.nextLine();
+                String meses = medicinaVista.sc.nextLine();
                 frecuencia = "CADA_" + meses + "_DIAS";
                 break;
             default:
@@ -161,15 +173,15 @@ public class MedicinaControlador {
             variable++;
         }
 
-        opcion = sc.nextInt();
-        sc.nextLine();
+        opcion = medicinaVista.sc.nextInt();
+        medicinaVista.sc.nextLine();
 
         int contador;
         switch (opcion) {
             case 1:
                 frecuenciaDia = FrecuenciaDia.UNA_VEZ_AL_DIA.name();
                 System.out.println("Ingrese la hora para la toma (hh:mm): ");
-                hora = sc.nextLine();
+                hora = medicinaVista.sc.nextLine();
                 frecuenciaDia += " [ " + hora + " ]";
                 break;
             case 2:
@@ -177,7 +189,7 @@ public class MedicinaControlador {
                 contador = 0;
                 while(contador < 2){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");
-                    hora = sc.nextLine();
+                    hora = medicinaVista.sc.nextLine();
                     horas.add(hora);
                     contador++;
                 }
@@ -189,7 +201,7 @@ public class MedicinaControlador {
                 contador = 0;
                 while(contador < 3){
                     System.out.println("Ingrese la hora para la toma (hh:mm): ");
-                    hora = sc.nextLine();
+                    hora = medicinaVista.sc.nextLine();
                     horas.add(hora);
                     contador++;
                 }
@@ -203,22 +215,25 @@ public class MedicinaControlador {
         }
 
         System.out.println("Ingrese la dosis a tomar de la medicina (gramos): ");
-        dosis = sc.nextFloat();
+        dosis = medicinaVista.sc.nextFloat();
+        medicinaVista.sc.nextLine();
 
-        Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,
-                presentacion, frecuencia, frecuenciaDia, dosis);
-        listaMedicinas.add(medicina);
+        Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,presentacion, frecuencia, frecuenciaDia, dosis);
+        medicinaModelo.agregarMedicina(i, medicina);
         System.out.println("Se añadio la medicina " + medicina);
     }
     
-    public static void eliminarMedicina(){
+    public void eliminarMedicina(String nombre){
         ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
         String medicinaEliminar;
 
-        mostrarListaMedicamento();
+        int i = perfilModelo.obtenerIndice(nombre);
+        ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
+
+        medicinaVista.mostrarListaMedicinas(listaMedicinas);
 
         System.out.println("Ingresar la medicina a eliminar: ");
-        medicinaEliminar = sc.nextLine();
+        medicinaEliminar = medicinaVista.sc.nextLine();
 
         for (Medicina medicina :listaMedicinas){
             if(medicina.getNombreMedicamento().equalsIgnoreCase(medicinaEliminar)){
@@ -228,7 +243,7 @@ public class MedicinaControlador {
         String consulta;
 
         System.out.println("Esta seguro de eliminar la medicna (SI/NO): ");
-        consulta = sc.nextLine();
+        consulta = medicinaVista.sc.nextLine();
 
 
         if (consulta.equalsIgnoreCase("si")) {
@@ -240,45 +255,30 @@ public class MedicinaControlador {
             }
         }
         else {
-            administrarMedicamento();
-        }
-    }
-
-    public static void mostrarListaMedicamento(){
-        if (listaMedicinas.isEmpty()){
-            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
-            System.out.println("NOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA [HORA] / DOSIS\n");
-            System.out.println("- Lista vacia\n-----------------------------");
-        }
-        else{
-            System.out.println("-----------------------------\nLista de Medicamentos Activos\n-----------------------------");
-            System.out.println("NOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA [HORA] / DOSIS\n");
-            for(Medicina medicina: listaMedicinas){
-                System.out.printf("- " + medicina + "\n");
-            }
-            System.out.println("-----------------------------");
+            administrarMedicamento(nombre);
         }
     }
     
-    public static void administrarMedicamento(){
+    public void administrarMedicamento(String nombre){
 
+        int i = perfilModelo.obtenerIndice(nombre);
+        
         int contador = 0;
         while (contador == 0){
-
-            mostrarListaMedicamento();
+            medicinaVista.mostrarListaMedicinas(medicinaModelo.obtenerMedicinasDePerfil(i));
 
             System.out.println("Escoja lo que desee hacer: ");
             int opcion = OpcionesMedicamentos();
-            sc.nextLine();
+            medicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
-                    añadirMedicina();
+                    añadirMedicina(nombre);
                     break;
                 case 2:
-                    eliminarMedicina();
+                    eliminarMedicina(nombre);
                     break;
                 case 3:
-                    TomaMedicinaControlador.registrarToma();
+                    tomaMedicinaControlador.registrarToma(nombre);
                     break;
                 case 4:
                     contador++;
