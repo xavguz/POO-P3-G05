@@ -1,30 +1,34 @@
 package Controladores;
-import modelo.cita.Medico;
-import modelo.cita.enums.Especialidades;
-import java.util.ArrayList;
-import java.util.Scanner;
+import modelo.MedicoModelo;
+import modelo.PerfilModelo;
+import modelo.Medico;
+import modelo.enums.Especialidades;
+import vista.MedicoVista;
 
 public class MedicoControlador {
-    public static ArrayList<Medico> listaMedicos = new ArrayList<>();
-    static Scanner sc= new Scanner(System.in);
-    
-    public static ArrayList<Medico> getListaMedicos() {
-        return listaMedicos;
+    private PerfilModelo perfilModelo;
+    private MedicoModelo medicoModelo;
+    private MedicoVista medicoVista;
+
+    public MedicoControlador(PerfilModelo perfilModelo, MedicoModelo medicoModelo, MedicoVista medicoVista){
+        this.perfilModelo = perfilModelo;
+        this.medicoModelo = medicoModelo;
+        this.medicoVista = medicoVista;
     }
     
-    public static int OpcionesMedico(){
+    public int OpcionesMedico(){
         int opcion;
         
         do {
             System.out.println("1. Añadir Médico.\n2. Volver.");
-            opcion = sc.nextInt();
-            sc.nextLine();
+            opcion = medicoVista.sc.nextInt();
+            medicoVista.sc.nextLine();
         }while(opcion == 1 && opcion == 2);
         return opcion;
     }
 
-    public static void añadirMedico(){
-        
+    public void añadirMedico(String nombre,String relacion){
+        int i = perfilModelo.obtenerIndice(nombre, relacion);
         String nombreMedico;
         String especialidad;
         String numeroTelefono;
@@ -33,7 +37,7 @@ public class MedicoControlador {
         int numero;
 
         System.out.println("Ingrese nombre: ");
-        nombreMedico= sc.nextLine();
+        nombreMedico = medicoVista.sc.nextLine();
 
         numero = 1;
         for (Especialidades e:Especialidades.values() ){
@@ -41,7 +45,8 @@ public class MedicoControlador {
             numero++;
         }
         System.out.print("Ingrese Especialidad (numero del 1 al 10): ");
-        int opcion= sc.nextInt();
+        int opcion= medicoVista.sc.nextInt();
+        medicoVista.sc.nextLine();
        
         switch (opcion){
             case 1:
@@ -76,44 +81,36 @@ public class MedicoControlador {
             break;
         }
 
-        sc.nextLine();
-   
         System.out.print("Ingrese teléfono: ");
-        numeroTelefono= sc.nextLine();
+        numeroTelefono = medicoVista.sc.nextLine();
             
         System.out.print("Ingrese correo: ");
-        email= sc.nextLine();
+        email= medicoVista.sc.nextLine();
 
         System.out.print("Ingrese dirección: ");
-        direccion= sc.nextLine();
+        direccion= medicoVista.sc.nextLine();
 
         Medico medico = new Medico(nombreMedico, especialidad, numeroTelefono, email, direccion);
-        listaMedicos.add(medico);
+        
+        medicoModelo.agregarMedico(i, medico);
 
         System.out.println("Se ha añadido al Medico: " + medico);
 
     }
 
-    public static void administrarMedico(){
+    public void administrarMedico(String nombre,String relacion){
+
+        int i = perfilModelo.obtenerIndice(nombre, relacion);
         
         int contador = 0;
         while(contador == 0){
             
-            if (listaMedicos.isEmpty()){
-                System.out.println("------------------\n Lista de Médicos \n------------------");
-                System.out.println("- No hay Médicos.\n------------------");
-            }
-            else{
-                System.out.println("------------------\n Lista de Médicos \n------------------");
-                for (Medico m: listaMedicos){
-                    System.out.println("- " + m);
-                }
-            }
+            medicoVista.mostrarListaMedicos(medicoModelo.obtenerListaMedicos(i));
 
             int opcion = OpcionesMedico();
             switch (opcion) {
                 case 1:
-                    añadirMedico();
+                    añadirMedico(nombre,relacion);
                     break;
             
                 case 2:

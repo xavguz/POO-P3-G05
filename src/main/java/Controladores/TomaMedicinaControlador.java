@@ -27,9 +27,9 @@ public class TomaMedicinaControlador {
     }
 
 
-    public void registrarToma(String nombre){
+    public void registrarToma(String nombre,String relacion){
 
-        int i = perfilModelo.obtenerIndice(nombre);
+        int i = perfilModelo.obtenerIndice(nombre,relacion);
         ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
         ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
 

@@ -36,8 +36,8 @@ public class MedicinaControlador {
         return opcion;
     }
 
-    public void añadirMedicina(String nombre){
-        int i = perfilModelo.obtenerIndice(nombre);
+    public void añadirMedicina(String nombre,String relacion){
+        int i = perfilModelo.obtenerIndice(nombre,relacion);
         ArrayList<String> diasSeleccionados = new ArrayList<String>();
         ArrayList<String> horas = new ArrayList<String>();
         String nombreMedicamento;
@@ -223,11 +223,11 @@ public class MedicinaControlador {
         System.out.println("Se añadio la medicina " + medicina);
     }
     
-    public void eliminarMedicina(String nombre){
+    public void eliminarMedicina(String nombre,String relacion){
         ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
         String medicinaEliminar;
 
-        int i = perfilModelo.obtenerIndice(nombre);
+        int i = perfilModelo.obtenerIndice(nombre,relacion);
         ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
 
         medicinaVista.mostrarListaMedicinas(listaMedicinas);
@@ -255,13 +255,13 @@ public class MedicinaControlador {
             }
         }
         else {
-            administrarMedicamento(nombre);
+            administrarMedicamento(nombre,relacion);
         }
     }
     
-    public void administrarMedicamento(String nombre){
+    public void administrarMedicamento(String nombre, String relacion){
 
-        int i = perfilModelo.obtenerIndice(nombre);
+        int i = perfilModelo.obtenerIndice(nombre,relacion);
         
         int contador = 0;
         while (contador == 0){
@@ -272,13 +272,13 @@ public class MedicinaControlador {
             medicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
-                    añadirMedicina(nombre);
+                    añadirMedicina(nombre,relacion);
                     break;
                 case 2:
-                    eliminarMedicina(nombre);
+                    eliminarMedicina(nombre,relacion);
                     break;
                 case 3:
-                    tomaMedicinaControlador.registrarToma(nombre);
+                    tomaMedicinaControlador.registrarToma(nombre,relacion);
                     break;
                 case 4:
                     contador++;

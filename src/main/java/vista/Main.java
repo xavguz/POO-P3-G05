@@ -1,8 +1,10 @@
 package vista;
 
 import Controladores.MedicinaControlador;
+import Controladores.MedicoControlador;
 import Controladores.PerfilControlador;
 import Controladores.TomaMedicinaControlador;
+import modelo.MedicoModelo;
 import modelo.PerfilModelo;
 import modelo.medicina.MedicinaModelo;
 import modelo.medicina.TomaMedicinaModelo;
@@ -16,13 +18,16 @@ public class Main {
         PerfilVista perfilVista = new PerfilVista();
         TomaMedicinaModelo tomaMedicinaModelo = new TomaMedicinaModelo();
         TomaMedicinaVista tomaMedicinaVista = new TomaMedicinaVista();
-        PerfilControlador perfilControlador;
+        MedicoModelo medicoModelo = new MedicoModelo();
+        MedicoVista medicoVista = new MedicoVista();
+        MedicoControlador medicoControlador= new MedicoControlador(perfilModelo, medicoModelo, medicoVista);
         TomaMedicinaControlador tomaMedicinaControlador = new TomaMedicinaControlador(perfilModelo, medicinaModelo, 
         medicinaVista, tomaMedicinaModelo, tomaMedicinaVista);
         MedicinaControlador medicinaControlador = new MedicinaControlador(medicinaModelo, medicinaVista,
                                                                             perfilModelo,tomaMedicinaControlador);
-        perfilControlador = new PerfilControlador(perfilModelo, perfilVista, 
-                                                    tomaMedicinaModelo,medicinaModelo, medicinaControlador);
+        PerfilControlador perfilControlador = new PerfilControlador(perfilModelo, 
+                                                        perfilVista, medicinaModelo, tomaMedicinaModelo, 
+                                                        medicoModelo, medicinaControlador, medicoControlador);
         perfilControlador.inicio();
     }
 }

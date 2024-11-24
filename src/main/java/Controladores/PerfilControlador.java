@@ -1,5 +1,6 @@
 package Controladores;
 
+import modelo.MedicoModelo;
 import modelo.Perfil;
 import modelo.PerfilModelo;
 import modelo.medicina.MedicinaModelo;
@@ -11,17 +12,22 @@ public class PerfilControlador {
 
     private PerfilModelo perfilModelo;
     private PerfilVista perfilVista;
-    private TomaMedicinaModelo tomaMedicinaModelo;
     private MedicinaModelo medicinaModelo;
+    private TomaMedicinaModelo tomaMedicinaModelo;
+    private MedicoModelo medicoModelo;
     private MedicinaControlador medicinaControlador;
+    private MedicoControlador medicoControlador;
 
-    public PerfilControlador(PerfilModelo perfilModelo,PerfilVista perfilVista, TomaMedicinaModelo tomaMedicinaModelo,
-                            MedicinaModelo medicinaModelo, MedicinaControlador medicinaControlador){
+    public PerfilControlador(PerfilModelo perfilModelo,PerfilVista perfilVista, MedicinaModelo medicinaModelo,
+                            TomaMedicinaModelo tomaMedicinaModelo, MedicoModelo medicoModelo , 
+                            MedicinaControlador medicinaControlador, MedicoControlador medicoControlador){
         this.perfilModelo = perfilModelo;
         this.perfilVista = perfilVista;
-        this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.medicinaModelo = medicinaModelo;
+        this.tomaMedicinaModelo = tomaMedicinaModelo;
+        this.medicoModelo = medicoModelo;
         this.medicinaControlador = medicinaControlador;
+        this.medicoControlador = medicoControlador;
     }
 
     public String OpcionesIniciales(){
@@ -69,6 +75,7 @@ public class PerfilControlador {
             perfilModelo.getListaPerfiles().add(perfil);
             medicinaModelo.inicializarListaMedicinaParaPerfil();
             tomaMedicinaModelo.inicializarListaTomas();
+            medicoModelo.inicializarListaMedicosPerfil();
             
         }else{
             System.out.println("El perfil ya existe.\n");
@@ -80,13 +87,15 @@ public class PerfilControlador {
 
         perfilVista.mostrarListaPerfiles(listaPerfiles);
         
-        System.out.println("Seleccine un perfil: ");
-
+        System.out.println("Seleccine un perfil");
+        System.out.println("Ingrese el nombre:");
         String nombre = perfilVista.sc.nextLine();
+        System.out.println("Ingrese la relacion");
+        String relacion = perfilVista.sc.nextLine();
         boolean encontrado = false;
 
         for (Perfil usuario : listaPerfiles) {
-            if (usuario.getNombre().equalsIgnoreCase(nombre)) {
+            if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getRelacion().equalsIgnoreCase(relacion)) {
                 encontrado = true;
                 int contador = 0;
 
@@ -95,10 +104,10 @@ public class PerfilControlador {
                     int opcion = OpcionesAdministrar();
                     switch (opcion) {
                         case 1:
-                            medicinaControlador.administrarMedicamento(nombre);
+                            medicinaControlador.administrarMedicamento(nombre,relacion);
                             break;
                         case 2:
-                            MedicoControlador.administrarMedico();
+                            medicoControlador.administrarMedico(nombre,relacion);
                             break;
                         case 3:
                             CitasMedicasControlador.administrarCita();

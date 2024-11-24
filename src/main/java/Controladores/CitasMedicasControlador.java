@@ -1,8 +1,8 @@
 package Controladores;
 
 import modelo.Fecha;
-import modelo.cita.CitaMedica;
-import modelo.cita.Medico;
+import modelo.CitaMedica;
+import modelo.Medico;
 import java.util.ArrayList;
 import java.util.Scanner;
 

@@ -13,9 +13,10 @@ public class PerfilModelo {
         listaPerfiles.add(perfil);
     }
     
-    public int obtenerIndice(String nombre){
+    public int obtenerIndice(String nombre,String relacion){
         for (int i = 0; i < listaPerfiles.size(); i++){
-            if (listaPerfiles.get(i).getNombre().equals(nombre)){
+            if (listaPerfiles.get(i).getNombre().equals(nombre) && 
+                listaPerfiles.get(i).getRelacion().equals(relacion)){
                 return i;
             }
         }

@@ -15,16 +15,16 @@ public class MedicinaModelo {
     }
 
     // Agregar medicina a un perfil específico
-    public void agregarMedicina(int indicePerfil, Medicina medicina) {
-        if (indicePerfil >= 0 && indicePerfil < listaListasMedicinas.size()) {
-            listaListasMedicinas.get(indicePerfil).add(medicina);
+    public void agregarMedicina(int i, Medicina medicina) {
+        if (i >= 0 && i < listaListasMedicinas.size()) {
+            listaListasMedicinas.get(i).add(medicina);
         }
     }
 
     // Obtener la lista de medicinas asociadas a un perfil
-    public ArrayList<Medicina> obtenerMedicinasDePerfil(int indicePerfil) {
-        if (indicePerfil >= 0 && indicePerfil < listaListasMedicinas.size()) {
-            return listaListasMedicinas.get(indicePerfil);
+    public ArrayList<Medicina> obtenerMedicinasDePerfil(int i) {
+        if (i >= 0 && i < listaListasMedicinas.size()) {
+            return listaListasMedicinas.get(i);
         }
         return new ArrayList<>();
     }
