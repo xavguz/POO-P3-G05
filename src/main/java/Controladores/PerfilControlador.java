@@ -1,5 +1,6 @@
 package Controladores;
 
+import modelo.CitaMedicaModelo;
 import modelo.MedicoModelo;
 import modelo.Perfil;
 import modelo.PerfilModelo;
@@ -15,19 +16,24 @@ public class PerfilControlador {
     private MedicinaModelo medicinaModelo;
     private TomaMedicinaModelo tomaMedicinaModelo;
     private MedicoModelo medicoModelo;
+    private CitaMedicaModelo citaMedicaModelo;
     private MedicinaControlador medicinaControlador;
     private MedicoControlador medicoControlador;
+    private CitaMedicaControlador citaMedicaControlador;
 
     public PerfilControlador(PerfilModelo perfilModelo,PerfilVista perfilVista, MedicinaModelo medicinaModelo,
-                            TomaMedicinaModelo tomaMedicinaModelo, MedicoModelo medicoModelo , 
-                            MedicinaControlador medicinaControlador, MedicoControlador medicoControlador){
+                            TomaMedicinaModelo tomaMedicinaModelo, MedicoModelo medicoModelo, 
+                            CitaMedicaModelo citaMedicaModelo, MedicinaControlador medicinaControlador,
+                            MedicoControlador medicoControlador, CitaMedicaControlador citaMedicaControlador){
         this.perfilModelo = perfilModelo;
         this.perfilVista = perfilVista;
         this.medicinaModelo = medicinaModelo;
         this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.medicoModelo = medicoModelo;
+        this.citaMedicaModelo = citaMedicaModelo;
         this.medicinaControlador = medicinaControlador;
         this.medicoControlador = medicoControlador;
+        this.citaMedicaControlador = citaMedicaControlador;
     }
 
     public String OpcionesIniciales(){
@@ -59,29 +65,31 @@ public class PerfilControlador {
     }
 
     public void  CrearPerfil() {
-        System.out.println("Ingrese su nombre: ");
-        String nombre = perfilVista.sc.nextLine();
-        System.out.println("Ingrese su relación: ");
-        String relacion = perfilVista.sc.nextLine();
-        System.out.println("Ingrese su email(NO obligatorio): ");
-        String email = perfilVista.sc.nextLine();
+        String nombre = perfilVista.IngresarNombre();
+        String relacion = perfilVista.IngresarRelacion();
+        String email = perfilVista.IngresarEmail();
+        boolean encontrado = false;
 
-        if (!email.isEmpty()) {
-            email = "No tiene email.";
+        for(Perfil p:perfilModelo.getListaPerfiles()){
+            if(p.getNombre().equalsIgnoreCase(nombre) && 
+            p.getRelacion().equalsIgnoreCase(relacion)){
+                encontrado = true;
+                System.out.println("El perfil ya existe.");
+                break;
+            }
         }
-        Perfil perfil = new Perfil(nombre, relacion, email);
-
-        if (!perfilModelo.getListaPerfiles().contains(perfil)){
-            perfilModelo.getListaPerfiles().add(perfil);
+        
+        if (!encontrado){
+            Perfil perfil = new Perfil(nombre, relacion, email);
             medicinaModelo.inicializarListaMedicinaParaPerfil();
             tomaMedicinaModelo.inicializarListaTomas();
             medicoModelo.inicializarListaMedicosPerfil();
-            
-        }else{
-            System.out.println("El perfil ya existe.\n");
-        }
-        
+            citaMedicaModelo.inicializarListaCitasPerfil();
+            perfilModelo.agregarPerfil(perfil);
+        } 
     }
+
+    
 
     public void SeleccionarPerfil (ArrayList < Perfil > listaPerfiles) {
 
@@ -100,7 +108,7 @@ public class PerfilControlador {
                 int contador = 0;
 
                 while (contador == 0){
-                    System.out.println("Hola, " + nombre + " que desea hacer:");
+                    System.out.println("Hola, " + usuario + " que desea hacer:");
                     int opcion = OpcionesAdministrar();
                     switch (opcion) {
                         case 1:
@@ -110,7 +118,7 @@ public class PerfilControlador {
                             medicoControlador.administrarMedico(nombre,relacion);
                             break;
                         case 3:
-                            CitasMedicasControlador.administrarCita();
+                            citaMedicaControlador.administrarCita(nombre,relacion);
                             break;
                         case 4:
                             ActividadFisicaControlador.administrarActividadFisica();

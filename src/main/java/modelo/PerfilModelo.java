@@ -15,8 +15,8 @@ public class PerfilModelo {
     
     public int obtenerIndice(String nombre,String relacion){
         for (int i = 0; i < listaPerfiles.size(); i++){
-            if (listaPerfiles.get(i).getNombre().equals(nombre) && 
-                listaPerfiles.get(i).getRelacion().equals(relacion)){
+            if (listaPerfiles.get(i).getNombre().equalsIgnoreCase(nombre) && 
+                listaPerfiles.get(i).getRelacion().equalsIgnoreCase(relacion)){
                 return i;
             }
         }
