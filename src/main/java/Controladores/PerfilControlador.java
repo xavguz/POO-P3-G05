@@ -4,8 +4,10 @@ import modelo.CitaMedicaModelo;
 import modelo.MedicoModelo;
 import modelo.Perfil;
 import modelo.PerfilModelo;
+import modelo.actividadfisica.ActividadFisicaModelo;
 import modelo.medicina.MedicinaModelo;
 import modelo.medicina.TomaMedicinaModelo;
+import vista.ActividadFisicaVista;
 import vista.PerfilVista;
 import java.util.ArrayList;
 
@@ -17,23 +19,28 @@ public class PerfilControlador {
     private TomaMedicinaModelo tomaMedicinaModelo;
     private MedicoModelo medicoModelo;
     private CitaMedicaModelo citaMedicaModelo;
+    private ActividadFisicaModelo actividadFisicaModelo;
     private MedicinaControlador medicinaControlador;
     private MedicoControlador medicoControlador;
     private CitaMedicaControlador citaMedicaControlador;
+    private ActividadFisicaControlador actividadFisicaControlador;
 
     public PerfilControlador(PerfilModelo perfilModelo,PerfilVista perfilVista, MedicinaModelo medicinaModelo,
                             TomaMedicinaModelo tomaMedicinaModelo, MedicoModelo medicoModelo, 
-                            CitaMedicaModelo citaMedicaModelo, MedicinaControlador medicinaControlador,
-                            MedicoControlador medicoControlador, CitaMedicaControlador citaMedicaControlador){
+                            CitaMedicaModelo citaMedicaModelo, ActividadFisicaModelo actividadFisicaModelo ,
+                            MedicinaControlador medicinaControlador, MedicoControlador medicoControlador, 
+                            CitaMedicaControlador citaMedicaControlador, ActividadFisicaControlador actividadFisicaControlador){
         this.perfilModelo = perfilModelo;
         this.perfilVista = perfilVista;
         this.medicinaModelo = medicinaModelo;
         this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.medicoModelo = medicoModelo;
         this.citaMedicaModelo = citaMedicaModelo;
+        this.actividadFisicaModelo = actividadFisicaModelo;
         this.medicinaControlador = medicinaControlador;
         this.medicoControlador = medicoControlador;
         this.citaMedicaControlador = citaMedicaControlador;
+        this.actividadFisicaControlador = actividadFisicaControlador;
     }
 
     public String OpcionesIniciales(){
@@ -85,6 +92,7 @@ public class PerfilControlador {
             tomaMedicinaModelo.inicializarListaTomas();
             medicoModelo.inicializarListaMedicosPerfil();
             citaMedicaModelo.inicializarListaCitasPerfil();
+            actividadFisicaModelo.inicializarListaActividades();
             perfilModelo.agregarPerfil(perfil);
         } 
     }
@@ -121,7 +129,7 @@ public class PerfilControlador {
                             citaMedicaControlador.administrarCita(nombre,relacion);
                             break;
                         case 4:
-                            ActividadFisicaControlador.administrarActividadFisica();
+                            actividadFisicaControlador.administrarActividadFisica(nombre,relacion);
                             break;
                         case 5:
                         contador++;

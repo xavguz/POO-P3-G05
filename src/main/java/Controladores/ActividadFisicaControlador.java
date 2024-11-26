@@ -1,47 +1,41 @@
 package Controladores;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import modelo.Fecha;
+import modelo.PerfilModelo;
 import modelo.actividadfisica.ActividadFisica;
+import modelo.actividadfisica.ActividadFisicaModelo;
 import modelo.actividadfisica.enums.Actividad;
 import modelo.actividadfisica.enums.Horario;
+import vista.ActividadFisicaVista;
 
 public class ActividadFisicaControlador {
+    private ActividadFisicaModelo actividadFisicaModelo;
+    private ActividadFisicaVista actividadFisicaVista;
+    private PerfilModelo perfilModelo;
 
-    static ArrayList <ActividadFisica> listaActividadesFisicas = new ArrayList<>();
-    public static Scanner sc = new Scanner(System.in);
+    public ActividadFisicaControlador(ActividadFisicaModelo actividadFisicaModelo, 
+    ActividadFisicaVista actividadFisicaVista, PerfilModelo perfilModelo){
+        this.actividadFisicaModelo = actividadFisicaModelo;
+        this.actividadFisicaVista = actividadFisicaVista;
+        this.perfilModelo = perfilModelo;
+    }
 
-    public static int opcioneActividadFisica(){
+
+    public int opcioneActividadFisica(){
         int opcion;
         do{
             System.out.println("1. Registrar acitividad fisica.\n" + //
                                 "2. Volver.");
-            opcion = sc.nextInt();
-            sc.nextLine();
+            opcion = actividadFisicaVista.sc.nextInt();
+            actividadFisicaVista.sc.nextLine();
         }while(opcion == 1 && opcion == 2);
         return opcion;
     }
 
-    public static void mostrarListaActividadFisica(){
-        if(listaActividadesFisicas.isEmpty()){
-            System.out.println("--------------------------------------\n" + //
-                                "     Lista de actividades fisicas     \n" + //
-                                "--------------------------------------");
-            System.out.println("- No hay Actividad Fisica registradas.\n--------------------------------------");
-        }
-        else{
-            System.out.println("--------------------------------------\n" + //
-                                "     Lista de actividades fisicas     \n" + //
-                                "--------------------------------------");
-            for(ActividadFisica a:listaActividadesFisicas){
-                System.out.println("- " + a);
-            }
-            System.out.println("--------------------------------------");
-        }
-    }
 
-    public static void registrarActividadFisica(){
+    public void registrarActividadFisica(String nombre,String relacion){
+        int i = perfilModelo.obtenerIndice(nombre, relacion);
         String dia;
         String hora;
         String actividad;
@@ -50,12 +44,14 @@ public class ActividadFisicaControlador {
         int opcion;
         int numeral;
 
-        mostrarListaActividadFisica();
+        ArrayList<ActividadFisica> listaActividades = actividadFisicaModelo.obtenerListaActividades(i);
+        
+        actividadFisicaVista.mostrarListaActividades(listaActividades);
 
         System.out.println("Ingrese el dia que realizó la actividad:");
-        dia = sc.nextLine();
+        dia = actividadFisicaVista.sc.nextLine();
         System.out.println("Ingrese la hora en que realizó la actvidad:");
-        hora = sc.nextLine();
+        hora = actividadFisicaVista.sc.nextLine();
         Fecha fecha = new Fecha(dia,hora);
         numeral = 1;
 
@@ -63,9 +59,10 @@ public class ActividadFisicaControlador {
             System.out.println(numeral + ". " + a);
             numeral++;
         }
+
         System.out.println("Escoja la actividad que relizo(1 al 7).");
-        opcion = sc.nextInt();
-        sc.nextLine();
+        opcion = actividadFisicaVista.sc.nextInt();
+        actividadFisicaVista.sc.nextLine();
         switch (opcion) {
             case 1:
                 actividad = Actividad.CAMINAR.name();
@@ -94,7 +91,7 @@ public class ActividadFisicaControlador {
         }
 
         System.out.println("Ingrese la duracion del ejercicio: ");
-        duracion = sc.nextLine();
+        duracion = actividadFisicaVista.sc.nextLine();
         numeral = 1;
 
         for (Horario h:Horario.values()){
@@ -102,8 +99,8 @@ public class ActividadFisicaControlador {
             numeral++;
         }
         System.out.println("Escoja el horario(1 al 3).");
-        opcion = sc.nextInt();
-        sc.nextLine();
+        opcion = actividadFisicaVista.sc.nextInt();
+        actividadFisicaVista.sc.nextLine();
         switch (opcion) {
             case 1:
                 horario = Horario.MAÑANA.name();
@@ -119,22 +116,28 @@ public class ActividadFisicaControlador {
                 break;
         }
         ActividadFisica actividadFisica = new ActividadFisica(fecha, actividad, duracion, horario);
-        listaActividadesFisicas.add(actividadFisica);
+        actividadFisicaModelo.agregarActividad(i, actividadFisica);
+        System.out.println("Se ha agregado la actividad: " + actividadFisica);
     }
 
-    public static void administrarActividadFisica(){
+    public void administrarActividadFisica(String nombre,String relacion){
+        int i = perfilModelo.obtenerIndice(nombre, relacion);
         int contador = 0;
 
+        ArrayList<ActividadFisica> listaActividades = actividadFisicaModelo.obtenerListaActividades(i);
+
         while(contador == 0){
-            mostrarListaActividadFisica();
+            
+            actividadFisicaVista.mostrarListaActividades(listaActividades);
+
             System.out.println("Escoja lo que quiera hacer:");
             
             int opcion = opcioneActividadFisica();
             switch (opcion) {
                 case 1:
-                    registrarActividadFisica();
+                    registrarActividadFisica(nombre,relacion);
                     break;
-                default:
+                case 2:
                 contador++;
                     break;
             }

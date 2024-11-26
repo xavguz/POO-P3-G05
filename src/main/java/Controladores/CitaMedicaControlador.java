@@ -8,9 +8,7 @@ import modelo.MedicoModelo;
 import modelo.PerfilModelo;
 import vista.CitaMedicaVista;
 import vista.MedicoVista;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CitaMedicaControlador {
     private CitaMedicaModelo citaMedicaModelo;

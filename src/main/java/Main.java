@@ -1,3 +1,4 @@
+import Controladores.ActividadFisicaControlador;
 import Controladores.CitaMedicaControlador;
 import Controladores.MedicinaControlador;
 import Controladores.MedicoControlador;
@@ -6,8 +7,10 @@ import Controladores.TomaMedicinaControlador;
 import modelo.CitaMedicaModelo;
 import modelo.MedicoModelo;
 import modelo.PerfilModelo;
+import modelo.actividadfisica.ActividadFisicaModelo;
 import modelo.medicina.MedicinaModelo;
 import modelo.medicina.TomaMedicinaModelo;
+import vista.ActividadFisicaVista;
 import vista.CitaMedicaVista;
 import vista.MedicinaVista;
 import vista.MedicoVista;
@@ -27,6 +30,9 @@ public class Main {
         MedicoVista medicoVista = new MedicoVista();
         CitaMedicaModelo citaMedicaModelo = new CitaMedicaModelo();
         CitaMedicaVista citaMedicaVista = new CitaMedicaVista();
+        ActividadFisicaModelo actividadFisicaModelo = new ActividadFisicaModelo();
+        ActividadFisicaVista actividadFisicaVista = new ActividadFisicaVista();
+        ActividadFisicaControlador actividadFisicaControlador = new ActividadFisicaControlador(actividadFisicaModelo, actividadFisicaVista, perfilModelo);
         MedicoControlador medicoControlador= new MedicoControlador(perfilModelo, medicoModelo, medicoVista);
         TomaMedicinaControlador tomaMedicinaControlador = new TomaMedicinaControlador(perfilModelo, medicinaModelo, 
         medicinaVista, tomaMedicinaModelo, tomaMedicinaVista);
@@ -35,8 +41,10 @@ public class Main {
         CitaMedicaControlador citaMedicaControlador = new CitaMedicaControlador(citaMedicaModelo, citaMedicaVista, 
                                                                 perfilModelo, medicoModelo, medicoVista);
         PerfilControlador perfilControlador = new PerfilControlador(perfilModelo, perfilVista, 
-        medicinaModelo, tomaMedicinaModelo, medicoModelo, 
-        citaMedicaModelo, medicinaControlador, medicoControlador, citaMedicaControlador);
+        medicinaModelo, tomaMedicinaModelo, 
+        medicoModelo, citaMedicaModelo, 
+        actividadFisicaModelo, medicinaControlador, medicoControlador, 
+        citaMedicaControlador, actividadFisicaControlador);
         perfilControlador.inicio();
     }
 }
