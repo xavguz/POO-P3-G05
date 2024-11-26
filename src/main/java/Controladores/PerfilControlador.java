@@ -79,40 +79,35 @@ public class PerfilControlador {
         String relacion = perfilVista.ingresarRelacion();
         boolean encontrado = false;
 
-        try{
-            for (Perfil usuario : listaPerfiles) {
-                if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getRelacion().equalsIgnoreCase(relacion)) {
-                    encontrado = true;
-                    int contador = 0;
-
-                    while (contador == 0){
-                        System.out.println("Hola, " + usuario + " que desea hacer:");
-
-                        int opcion = perfilVista.opcionesAdministrar();
-                        switch (opcion) {
-                            case 1:
-                                medicinaControlador.administrarMedicamento(nombre,relacion);
-                                break;
-                            case 2:
-                                medicoControlador.administrarMedico(nombre,relacion);
-                                break;
-                            case 3:
-                                citaMedicaControlador.administrarCita(nombre,relacion);
-                                break;
-                            case 4:
-                                actividadFisicaControlador.administrarActividadFisica(nombre,relacion);
-                                break;
-                            case 5:
-                            contador++;
-                                break;
-                        
-                        }
-                    }   
-                }
+        for (Perfil usuario : listaPerfiles) {
+            if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getRelacion().equalsIgnoreCase(relacion)) {
+                encontrado = true;
+                int contador = 0;
+                while (contador == 0){
+                    System.out.println("Hola, " + usuario + " que desea hacer:");
+                    int opcion = perfilVista.opcionesAdministrar();
+                    switch (opcion) {
+                        case 1:
+                            medicinaControlador.administrarMedicamento(nombre,relacion);
+                            break;
+                        case 2:
+                            medicoControlador.administrarMedico(nombre,relacion);
+                            break;
+                        case 3:
+                            citaMedicaControlador.administrarCita(nombre,relacion);
+                            break;
+                        case 4:
+                            actividadFisicaControlador.administrarActividadFisica(nombre,relacion);
+                            break;
+                        case 5:
+                        contador++;
+                            break;
+                    
+                    }
+                }   
             }
-        } catch(Exception e){
-            e.printStackTrace();
         }
+        
         if (encontrado == false) {
             System.out.println("\nNo existe el usuario.");
         }

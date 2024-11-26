@@ -1,6 +1,7 @@
 package vista;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import modelo.Perfil;
 
@@ -50,17 +51,28 @@ public class PerfilVista {
     }
 
     public int opcionesAdministrar(){
-        int opcion;
-        
+        int opcion = -1;
+        boolean valida;
+
         do {
-            System.out.println("1. Administrar Medicamentos.\n" + //
-                                "2. Administrar Médicos.\n" + //
-                                "3. Administrar Citas Médicas.\n" + //
-                                "4. Administrar Actividad Fisica.\n" + //
-                                "5. Volver.");
-            opcion = sc.nextInt();
-            sc.nextLine();
-        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4 && opcion == 5);
+            valida = true;
+            try{
+                System.out.println("1. Administrar Medicamentos.\n" + //
+                                    "2. Administrar Médicos.\n" + //
+                                    "3. Administrar Citas Médicas.\n" + //
+                                    "4. Administrar Actividad Fisica.\n" + //
+                                    "5. Volver.");
+                opcion = sc.nextInt();
+                if (opcion<1 || opcion>5){
+                    valida = false;
+                }
+            }catch(InputMismatchException e){
+                System.out.println("Error: Debes ingresar un numero.\n");
+                sc.nextLine();
+                valida = false;
+            }  
+        }while(!valida);
+
         return opcion;
     }
 
