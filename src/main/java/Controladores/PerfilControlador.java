@@ -43,38 +43,10 @@ public class PerfilControlador {
         this.actividadFisicaControlador = actividadFisicaControlador;
     }
 
-    public String OpcionesIniciales(){
-        
-        perfilVista.mostrarListaPerfiles(perfilModelo.getListaPerfiles());
-
-        String opcion;
-
-        do {
-            System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");
-            opcion = perfilVista.sc.nextLine().toLowerCase();
-        }while(!opcion.equals("a") && !opcion.equals("b") && !opcion.equals("c"));
-        return opcion;
-    }
-
-    public int OpcionesAdministrar(){
-        int opcion;
-        
-        do {
-            System.out.println("1. Administrar Medicamentos.\n" + //
-                                "2. Administrar Médicos.\n" + //
-                                "3. Administrar Citas Médicas.\n" + //
-                                "4. Administrar Actividad Fisica.\n" + //
-                                "5. Volver.");
-            opcion = perfilVista.sc.nextInt();
-            perfilVista.sc.nextLine();
-        }while(opcion == 1 && opcion == 2 && opcion == 3 && opcion == 4 && opcion == 5);
-        return opcion;
-    }
-
     public void  CrearPerfil() {
-        String nombre = perfilVista.IngresarNombre();
-        String relacion = perfilVista.IngresarRelacion();
-        String email = perfilVista.IngresarEmail();
+        String nombre = perfilVista.ingresarNombre();
+        String relacion = perfilVista.ingresarRelacion();
+        String email = perfilVista.ingresarEmail();
         boolean encontrado = false;
 
         for(Perfil p:perfilModelo.getListaPerfiles()){
@@ -97,47 +69,49 @@ public class PerfilControlador {
         } 
     }
 
-    
-
     public void SeleccionarPerfil (ArrayList < Perfil > listaPerfiles) {
 
         perfilVista.mostrarListaPerfiles(listaPerfiles);
         
         System.out.println("Seleccine un perfil");
-        System.out.println("Ingrese el nombre:");
-        String nombre = perfilVista.sc.nextLine();
-        System.out.println("Ingrese la relacion");
-        String relacion = perfilVista.sc.nextLine();
+        
+        String nombre = perfilVista.ingresarNombre();
+        String relacion = perfilVista.ingresarRelacion();
         boolean encontrado = false;
 
-        for (Perfil usuario : listaPerfiles) {
-            if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getRelacion().equalsIgnoreCase(relacion)) {
-                encontrado = true;
-                int contador = 0;
+        try{
+            for (Perfil usuario : listaPerfiles) {
+                if (usuario.getNombre().equalsIgnoreCase(nombre) && usuario.getRelacion().equalsIgnoreCase(relacion)) {
+                    encontrado = true;
+                    int contador = 0;
 
-                while (contador == 0){
-                    System.out.println("Hola, " + usuario + " que desea hacer:");
-                    int opcion = OpcionesAdministrar();
-                    switch (opcion) {
-                        case 1:
-                            medicinaControlador.administrarMedicamento(nombre,relacion);
-                            break;
-                        case 2:
-                            medicoControlador.administrarMedico(nombre,relacion);
-                            break;
-                        case 3:
-                            citaMedicaControlador.administrarCita(nombre,relacion);
-                            break;
-                        case 4:
-                            actividadFisicaControlador.administrarActividadFisica(nombre,relacion);
-                            break;
-                        case 5:
-                        contador++;
-                            break;
-    
-                    }
-                }   
+                    while (contador == 0){
+                        System.out.println("Hola, " + usuario + " que desea hacer:");
+
+                        int opcion = perfilVista.opcionesAdministrar();
+                        switch (opcion) {
+                            case 1:
+                                medicinaControlador.administrarMedicamento(nombre,relacion);
+                                break;
+                            case 2:
+                                medicoControlador.administrarMedico(nombre,relacion);
+                                break;
+                            case 3:
+                                citaMedicaControlador.administrarCita(nombre,relacion);
+                                break;
+                            case 4:
+                                actividadFisicaControlador.administrarActividadFisica(nombre,relacion);
+                                break;
+                            case 5:
+                            contador++;
+                                break;
+                        
+                        }
+                    }   
+                }
             }
+        } catch(Exception e){
+            e.printStackTrace();
         }
         if (encontrado == false) {
             System.out.println("\nNo existe el usuario.");
@@ -147,7 +121,8 @@ public class PerfilControlador {
     public void inicio(){
         int contador = 0;
         while(contador == 0){
-            String opcion = OpcionesIniciales();
+            perfilVista.mostrarListaPerfiles(perfilModelo.getListaPerfiles());
+            String opcion = perfilVista.opcionesIniciales();
             switch(opcion){
                 case "a":
                     CrearPerfil();
