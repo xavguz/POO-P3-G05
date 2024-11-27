@@ -52,7 +52,7 @@ public class Main {
         actividadFisicaModelo, medicinaControlador, medicoControlador, 
         citaMedicaControlador, actividadFisicaControlador);
 
-        Perfil perfilInicio= new Perfil("Christian", "Paciente", "er.kj45@hotmail.com");
+        Perfil perfilInicio= new Perfil("Pepe", "Paciente", "er.kj45@hotmail.com");
         perfilModelo.agregarPerfil(perfilInicio);
         medicinaModelo.inicializarListaMedicinaParaPerfil();
         tomaMedicinaModelo.inicializarListaTomas();
