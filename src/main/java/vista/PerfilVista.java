@@ -52,10 +52,7 @@ public class PerfilVista {
 
     public int opcionesAdministrar(){
         int opcion = -1;
-        boolean valida;
-
         do {
-            valida = true;
             try{
                 System.out.println("1. Administrar Medicamentos.\n" + //
                                     "2. Administrar Médicos.\n" + //
@@ -63,15 +60,12 @@ public class PerfilVista {
                                     "4. Administrar Actividad Fisica.\n" + //
                                     "5. Volver.");
                 opcion = sc.nextInt();
-                if (opcion<1 || opcion>5){
-                    valida = false;
-                }
+                sc.nextLine();
             }catch(InputMismatchException e){
                 System.out.println("Error: Debes ingresar un numero.\n");
                 sc.nextLine();
-                valida = false;
             }  
-        }while(!valida);
+        }while(opcion!=1 && opcion!=2 && opcion!=3 && opcion!=4 && opcion!=5);
 
         return opcion;
     }
