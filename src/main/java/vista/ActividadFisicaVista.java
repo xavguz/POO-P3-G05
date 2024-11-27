@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import modelo.actividadfisica.ActividadFisica;
+import modelo.ActividadFisica;
 
 
 public class ActividadFisicaVista {

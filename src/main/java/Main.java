@@ -10,10 +10,10 @@ import modelo.Fecha;
 import modelo.Medico;
 import modelo.MedicoModelo;
 import modelo.PerfilModelo;
-import modelo.actividadfisica.ActividadFisica;
-import modelo.actividadfisica.ActividadFisicaModelo;
-import modelo.medicina.MedicinaModelo;
-import modelo.medicina.TomaMedicinaModelo;
+import modelo.ActividadFisica;
+import modelo.ActividadFisicaModelo;
+import modelo.MedicinaModelo;
+import modelo.TomaMedicinaModelo;
 import vista.ActividadFisicaVista;
 import vista.CitaMedicaVista;
 import vista.MedicinaVista;
@@ -21,7 +21,7 @@ import vista.MedicoVista;
 import vista.PerfilVista;
 import vista.TomaMedicinaVista;
 import modelo.Perfil;
-import modelo.medicina.*;
+import modelo.*;
 
 public class Main {
     public static void main(String[] args) {

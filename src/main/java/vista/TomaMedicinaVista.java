@@ -2,7 +2,7 @@ package vista;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import modelo.medicina.TomaMedicina;
+import modelo.TomaMedicina;
 
 public class TomaMedicinaVista {
 

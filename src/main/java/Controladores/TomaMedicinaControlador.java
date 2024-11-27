@@ -3,10 +3,10 @@ package Controladores;
 import modelo.Fecha;
 import modelo.PerfilModelo;
 import java.util.ArrayList;
-import modelo.medicina.Medicina;
-import modelo.medicina.MedicinaModelo;
-import modelo.medicina.TomaMedicina;
-import modelo.medicina.TomaMedicinaModelo;
+import modelo.Medicina;
+import modelo.MedicinaModelo;
+import modelo.TomaMedicina;
+import modelo.TomaMedicinaModelo;
 import vista.MedicinaVista;
 import vista.TomaMedicinaVista;
 

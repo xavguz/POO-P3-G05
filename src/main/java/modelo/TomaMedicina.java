@@ -1,4 +1,4 @@
-package modelo.medicina;
+package modelo;
 
 import modelo.Fecha;
 

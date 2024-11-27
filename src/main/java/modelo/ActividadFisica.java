@@ -1,4 +1,4 @@
-package modelo.actividadfisica;
+package modelo;
 
 import modelo.Fecha;
 

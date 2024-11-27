@@ -10,43 +10,38 @@ public class PerfilVista {
     public Scanner sc = new Scanner(System.in);
 
     public String ingresarNombre(){
-        System.out.println("Ingrese su nombre: ");
-        String nombre = sc.nextLine();
-        return nombre;
+        String nombrePerfil;
+        do {
+            System.out.println("Ingresar nombre: ");
+            nombrePerfil = sc.nextLine();
+        } while (nombrePerfil.isEmpty());
+        return nombrePerfil;
     }
 
     public String ingresarRelacion(){
-        System.out.println("Ingrese su relación: ");
-        String relacion = sc.nextLine();
+        String relacion;
+        do {
+            System.out.println("Ingresar relacion: ");
+            relacion = sc.nextLine();
+        } while (relacion.isEmpty());
         return relacion;
     }
 
     public String ingresarEmail(){
-        System.out.println("Ingrese su email(NO obligatorio): ");
-        String email = sc.nextLine();
-
-        if (!email.isEmpty()) {
-            email = "No tiene email.";
-        }
-        return email;
+        System.out.println("Ingresar email (No obligatorio): ");
+        return sc.nextLine();
     }
 
     public void mostrarListaPerfiles(ArrayList<Perfil> listaPerfiles){
+        System.out.println("-- Lista de perfiles --");
         if (listaPerfiles.isEmpty()){
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("                     Lista de Perfiles                     ");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("- No hay perfiles en los registros.");
-            System.out.println("-----------------------------------------------------------");
-        }
-        else{
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("                     Lista de Perfiles                     ");
-            System.out.println("-----------------------------------------------------------");
-            for(Perfil perfil: listaPerfiles){
-                System.out.printf("- " + perfil + "\n");
+            System.out.println("  - No hay perfiles");
+            System.out.println("-----------------------");
+        } else {
+            for (Perfil perfil: listaPerfiles){
+                System.out.println("- " + perfil.getNombre() + " (" +perfil.getRelacion() + ")");
             }
-            System.out.println("-----------------------------------------------------------");
+            System.out.println("-----------------------");
         }
     }
 
@@ -64,7 +59,7 @@ public class PerfilVista {
             }catch(InputMismatchException e){
                 System.out.println("Error: Debes ingresar un numero.\n");
                 sc.nextLine();
-            }  
+            }
         }while(opcion!=1 && opcion!=2 && opcion!=3 && opcion!=4 && opcion!=5);
 
         return opcion;
@@ -72,12 +67,13 @@ public class PerfilVista {
 
     public String opcionesIniciales(){
 
-        String opcion;
-
-        do {
-            System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");
-            opcion = sc.nextLine().toLowerCase();
-        }while(!opcion.equals("a") && !opcion.equals("b") && !opcion.equals("c"));
-        return opcion;
+        while (true) {
+            try {
+                System.out.println("a.Crear perfil \nb.Seleccionar perfil \nc.Cerrar");
+                return sc.nextLine().toLowerCase();
+        }catch (InputMismatchException e){
+                System.out.println("Error: Debes ingresar una opcion correcta.");
+            }
+        }
     }
 }

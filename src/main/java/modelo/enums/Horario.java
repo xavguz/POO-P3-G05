@@ -1,4 +1,4 @@
-package modelo.actividadfisica.enums;
+package modelo.enums;
 
 public enum Horario {
     MAÑANA,

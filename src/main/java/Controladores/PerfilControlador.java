@@ -4,9 +4,9 @@ import modelo.CitaMedicaModelo;
 import modelo.MedicoModelo;
 import modelo.Perfil;
 import modelo.PerfilModelo;
-import modelo.actividadfisica.ActividadFisicaModelo;
-import modelo.medicina.MedicinaModelo;
-import modelo.medicina.TomaMedicinaModelo;
+import modelo.ActividadFisicaModelo;
+import modelo.MedicinaModelo;
+import modelo.TomaMedicinaModelo;
 import vista.ActividadFisicaVista;
 import vista.PerfilVista;
 import java.util.ArrayList;
@@ -107,8 +107,7 @@ public class PerfilControlador {
                 }   
             }
         }
-        
-        if (encontrado == false) {
+        if (!encontrado) {
             System.out.println("\nNo existe el usuario.");
         }
     }

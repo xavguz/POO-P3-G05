@@ -3,10 +3,10 @@ package Controladores;
 import java.util.ArrayList;
 import modelo.Fecha;
 import modelo.PerfilModelo;
-import modelo.actividadfisica.ActividadFisica;
-import modelo.actividadfisica.ActividadFisicaModelo;
-import modelo.actividadfisica.enums.Actividad;
-import modelo.actividadfisica.enums.Horario;
+import modelo.ActividadFisica;
+import modelo.ActividadFisicaModelo;
+import modelo.enums.Actividad;
+import modelo.enums.Horario;
 import vista.ActividadFisicaVista;
 
 public class ActividadFisicaControlador {

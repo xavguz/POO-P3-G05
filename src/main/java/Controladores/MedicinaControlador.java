@@ -1,10 +1,11 @@
 package Controladores;
 
-import java.util.ArrayList;
-import modelo.PerfilModelo;
-import modelo.medicina.*;
 import vista.MedicinaVista;
-import modelo.medicina.MedicinaModelo;
+import modelo.Medicina;
+import modelo.MedicinaModelo;
+import modelo.PerfilModelo;
+
+import java.util.ArrayList;
 
 public class MedicinaControlador {
 
@@ -23,19 +24,18 @@ public class MedicinaControlador {
 
     public void añadirMedicina(String nombre,String relacion){
         int i = perfilModelo.obtenerIndice(nombre,relacion);
-        ArrayList<Object> datosMedicina = medicinaVista.medicina();
-        
-        String nombreMedicamento = (String) datosMedicina.get(0);
-        float cantidadUnidades = (float) datosMedicina.get(1);
-        String presentacion = (String) datosMedicina.get(2);
-        String frecuencia = (String) datosMedicina.get(3);
-        String frecuenciaDia = (String) datosMedicina.get(4);
-        float dosis = (float) datosMedicina.get(5);
-        
-        Medicina medicina = new Medicina(nombreMedicamento, cantidadUnidades,presentacion, 
-                                        frecuencia, frecuenciaDia, dosis);
-        medicinaModelo.agregarMedicina(i, medicina);
-        System.out.println("Se añadio la medicina " + medicina);
+
+        String nombreMedicina = medicinaVista.nombreMedicina();
+        float cantidadUnidadesDisponibles = medicinaVista.cantidadUnidadesDisponibles();
+        String presentacion = medicinaVista.presentacionMedicina();
+        String frecuencia = medicinaVista.frecuencia();
+        String frecuenciaDia = medicinaVista.frecuenciaDia();
+        float dosis = medicinaVista.dosis();
+
+        Medicina medicina = new Medicina(nombreMedicina, cantidadUnidadesDisponibles, presentacion,
+                frecuencia, frecuenciaDia, dosis);
+        medicinaModelo.agregarMedicina(i,medicina);
+        System.out.println("Se ha a agregado una nueva medicina: " + nombreMedicina);
     }
     
     public void eliminarMedicina(String nombre,String relacion){
@@ -80,7 +80,6 @@ public class MedicinaControlador {
 
             System.out.println("Escoja lo que desee hacer: ");
             int opcion = medicinaVista.opcionesMedicamentos();
-            medicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
                     añadirMedicina(nombre,relacion);
