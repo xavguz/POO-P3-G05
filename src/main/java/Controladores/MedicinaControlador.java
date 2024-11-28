@@ -72,7 +72,6 @@ public class MedicinaControlador {
             }
         } else {
             System.out.println("No hay medicinas a eliminar!");
-            administrarMedicamento(nombre, relacion);
         }
     }
     

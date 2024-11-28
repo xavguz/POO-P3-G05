@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.Fecha;
-
 public class ActividadFisica {
     private Fecha fecha;
     private String actividad;

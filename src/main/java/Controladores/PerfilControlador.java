@@ -7,7 +7,6 @@ import modelo.PerfilModelo;
 import modelo.ActividadFisicaModelo;
 import modelo.MedicinaModelo;
 import modelo.TomaMedicinaModelo;
-import vista.ActividadFisicaVista;
 import vista.PerfilVista;
 import java.util.ArrayList;
 

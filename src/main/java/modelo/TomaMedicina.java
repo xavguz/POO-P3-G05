@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.Fecha;
-
 public class TomaMedicina {
     private Medicina medicina;
     private Fecha fecha;
@@ -28,7 +26,7 @@ public class TomaMedicina {
     }
 
     public String toString(){
-        return medicina + " / " + fecha;
+        return medicina.getNombreMedicamento() + " / " + fecha;
     }
 
 }

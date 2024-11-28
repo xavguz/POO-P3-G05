@@ -7,6 +7,7 @@ import modelo.Medicina;
 import modelo.MedicinaModelo;
 import modelo.TomaMedicina;
 import modelo.TomaMedicinaModelo;
+import vista.FechaVista;
 import vista.MedicinaVista;
 import vista.TomaMedicinaVista;
 
@@ -16,14 +17,16 @@ public class TomaMedicinaControlador {
     private MedicinaVista medicinaVista;
     private TomaMedicinaModelo tomaMedicinaModelo;
     private TomaMedicinaVista tomaMedicinaVista;
+    private FechaVista fechaVista;
 
     public TomaMedicinaControlador(PerfilModelo perfilModelo,MedicinaModelo medicinaModelo,MedicinaVista medicinaVista,
-    TomaMedicinaModelo tomaMedicinaModelo,TomaMedicinaVista tomaMedicinaVista){
+    TomaMedicinaModelo tomaMedicinaModelo,TomaMedicinaVista tomaMedicinaVista,FechaVista fechaVista){
         this.perfilModelo = perfilModelo;
         this.medicinaModelo = medicinaModelo;
         this.medicinaVista = medicinaVista;
         this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.tomaMedicinaVista = tomaMedicinaVista;
+        this.fechaVista = fechaVista;
     }
 
 
@@ -36,29 +39,27 @@ public class TomaMedicinaControlador {
         medicinaVista.mostrarListaMedicinas(listaMedicinas);
         tomaMedicinaVista.mostrarListaTomas(listaTomas);
 
-        System.out.println("Escriba un medicamento a registrar toma: ");
-        String seleccionMedicamento = tomaMedicinaVista.sc.nextLine();
+        if (!listaMedicinas.isEmpty()){
+            String seleccionMedicamento = tomaMedicinaVista.nombreMedicina();
+            for (Medicina medicina:listaMedicinas){
+                if (medicina.getNombreMedicamento().equalsIgnoreCase(seleccionMedicamento)){
 
-        for (Medicina medicina:listaMedicinas){
-            if (medicina.getNombreMedicamento().equalsIgnoreCase(seleccionMedicamento)){
-                String dia;
-                String hora;
+                    String dia = fechaVista.dia();
+                    String hora = fechaVista.hora();
 
-                System.out.println("Ingrese el dia de la toma: ");
-                dia = tomaMedicinaVista.sc.nextLine();
-                System.out.println("Ingrese la hora de la toma (hh:mm): ");
-                hora = tomaMedicinaVista.sc.nextLine();
+                    Fecha fecha = new Fecha(dia,hora);
+                    TomaMedicina toma = new TomaMedicina(medicina, fecha);
+                    listaTomas.add(toma);
 
-                Fecha fecha = new Fecha(dia,hora);
-                TomaMedicina toma = new TomaMedicina(medicina, fecha);
-                listaTomas.add(toma);
-                
-                System.out.println("Se ha registrado la toma de [ " + medicina.getNombreMedicamento() + " ].");
-                tomaMedicinaVista.mostrarListaTomas(listaTomas);
+                    System.out.println("Se ha registrado la toma de [ " + medicina.getNombreMedicamento() + " ].");
+                    tomaMedicinaVista.mostrarListaTomas(listaTomas);
+                }
+                else{
+                    System.out.println("No esta el medicamento en los registros.");
+                }
             }
-            else{
-                System.out.println("No esta el medicamento en los registros.");
-            }
+        }else{
+            System.out.println("No hay medicinas a regitrar toma!");
         }
     }
 }
