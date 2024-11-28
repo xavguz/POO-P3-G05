@@ -22,24 +22,16 @@ public class MedicinaVista {
     }
 
     public float cantidadUnidadesDisponibles() {
-        boolean validacion;
-        float opcion = -1;
-        do {
-            validacion = true;
+        while (true) {
             System.out.println("Ingresar cantidad de unidades disponibles: ");
             try {
-                opcion = sc.nextFloat();
-                sc.nextLine();
-                if(opcion < 0){
-                    validacion = false;
-                }
+                return sc.nextFloat();
+
             } catch (InputMismatchException e) {
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");
                 sc.nextLine();
-                validacion = false;
             }
-        }while(!validacion);
-        return opcion;
+        }
     }
 
     public String presentacionMedicina() {
@@ -215,11 +207,10 @@ public class MedicinaVista {
         while (true) {
             System.out.println("Ingresar la dosis: ");
             try {
-                float opcion = sc.nextFloat();
-                sc.nextLine();
-                return opcion;
+                return sc.nextFloat();
             } catch (InputMismatchException e) {
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");
+                sc.nextLine();
             }
         }
     }
@@ -231,10 +222,10 @@ public class MedicinaVista {
             for (Medicina medicina : listaMedicinas) {
                 System.out.printf("- " + medicina + "\n");
             }
-            System.out.println("----------------------------------");
         } else {
-            System.out.println("       - No hay medicina");
+            System.out.println("                                  - No hay medicina");
         }
+        System.out.println("--------------------------------------------------------------------------------------");
     }
 
     public int opcionesMedicamentos(){
@@ -244,11 +235,10 @@ public class MedicinaVista {
                     "3. Registrar Toma.\n" + //
                     "4. Volver.");
             try {
-                int opcion = sc.nextInt();
-                sc.nextLine();
-                return opcion;
+                return sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");
+                sc.nextLine();
             }
         }
     }

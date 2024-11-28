@@ -47,28 +47,32 @@ public class MedicinaControlador {
 
         medicinaVista.mostrarListaMedicinas(listaMedicinas);
 
-        System.out.println("Ingresar la medicina a eliminar: ");
-        medicinaEliminar = medicinaVista.sc.nextLine();
-
-        for (Medicina medicina :listaMedicinas){
-            if(medicina.getNombreMedicamento().equalsIgnoreCase(medicinaEliminar)){
-                medicinasEliminar.add(medicina);
+        if (!listaMedicinas.isEmpty()){
+            System.out.println("Ingresar la medicina a eliminar: ");
+            medicinaEliminar = medicinaVista.sc.nextLine();
+            for (Medicina medicina :listaMedicinas){
+                if(medicina.getNombreMedicamento().equalsIgnoreCase(medicinaEliminar)){
+                    medicinasEliminar.add(medicina);
+                }
             }
-        }
-        String consulta;
+            String consulta;
 
-        System.out.println("Esta seguro de eliminar la medicna (SI/NO): ");
-        consulta = medicinaVista.sc.nextLine();
-        if (consulta.equalsIgnoreCase("si")) {
-            listaMedicinas.removeAll(medicinasEliminar);
-            if (!medicinasEliminar.isEmpty()) {
-                System.out.println("Medicina eliminada.");
-            } else {
-                System.out.println("No se encontró la medicina.");
+            System.out.println("Esta seguro de eliminar la medicna (SI/NO): ");
+            consulta = medicinaVista.sc.nextLine();
+            if (consulta.equalsIgnoreCase("si")) {
+                listaMedicinas.removeAll(medicinasEliminar);
+                if (!medicinasEliminar.isEmpty()) {
+                    System.out.println("Medicina eliminada.");
+                } else {
+                    System.out.println("No se encontró la medicina.");
+                }
             }
-        }
-        else {
-            administrarMedicamento(nombre,relacion);
+            else {
+                administrarMedicamento(nombre,relacion);
+            }
+        } else {
+            System.out.println("No hay medicinas a eliminar!");
+            administrarMedicamento(nombre, relacion);
         }
     }
     
@@ -80,6 +84,7 @@ public class MedicinaControlador {
 
             System.out.println("Escoja lo que desee hacer: ");
             int opcion = medicinaVista.opcionesMedicamentos();
+            medicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
                     añadirMedicina(nombre,relacion);
