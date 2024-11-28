@@ -8,23 +8,37 @@ public class TomaMedicinaVista {
 
     public Scanner sc = new Scanner(System.in);
     
+    public String nombreMedicina(){
+        String nombreMedicina;
+        do{
+            System.out.println("Ingrese la medicina a registrar la toma:");
+             nombreMedicina = sc.nextLine();
+        }while(nombreMedicina.isEmpty());
+        return nombreMedicina;
+    }
+
+    public String dia(){
+        System.out.println("Ingrese el dia de la toma:");
+        return sc.nextLine();
+    }
+
+    public String hora(){
+        System.out.println("Ingrese la hora de la toma:");
+        return sc.nextLine();
+    }
+
     public void mostrarListaTomas(ArrayList<TomaMedicina> listaTomas){
         if (listaTomas.isEmpty()){
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("                       Lista de Tomas                      ");
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("- No hay tomas registradas.");
-            System.out.println("-----------------------------------------------------------");
+            System.out.println("-----------------------Lista de Tomas-----------------------");
+            System.out.println("                  No hay tomas registradas"); 
         }
         else{
-            System.out.println("-----------------------------------------------------------");
-            System.out.println("                       Lista de Tomas                      ");
-            System.out.println("-----------------------------------------------------------");
+            System.out.println("-----------------------Lista de Tomas-----------------------");
             for(TomaMedicina toma: listaTomas){
                 System.out.printf("- " + toma + "\n");
             }
-            System.out.println("-----------------------------------------------------------");
         }
+        System.out.println("-----------------------------------------------------------");
     }
 
 }

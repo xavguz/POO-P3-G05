@@ -28,7 +28,7 @@ public class TomaMedicina {
     }
 
     public String toString(){
-        return medicina + " / " + fecha;
+        return medicina.getNombreMedicamento() + " / " + fecha;
     }
 
 }
