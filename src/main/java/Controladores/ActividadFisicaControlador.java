@@ -22,7 +22,7 @@ public class ActividadFisicaControlador {
     }
 
 
-    public int opcioneActividadFisica(){
+    public int opcionesActividadFisica(){
         int opcion;
         do{
             System.out.println("1. Registrar acitividad fisica.\n" + //
@@ -60,7 +60,7 @@ public class ActividadFisicaControlador {
             numeral++;
         }
 
-        System.out.println("Escoja la actividad que relizo(1 al 7).");
+        System.out.println("Escoja la actividad que realizo (1 al 7): ");
         opcion = actividadFisicaVista.sc.nextInt();
         actividadFisicaVista.sc.nextLine();
         switch (opcion) {
@@ -132,7 +132,7 @@ public class ActividadFisicaControlador {
 
             System.out.println("Escoja lo que quiera hacer:");
             
-            int opcion = opcioneActividadFisica();
+            int opcion = opcionesActividadFisica();
             switch (opcion) {
                 case 1:
                     registrarActividadFisica(nombre,relacion);

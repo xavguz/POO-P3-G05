@@ -79,6 +79,7 @@ public class MedicinaControlador {
     public void administrarMedicamento(String nombre, String relacion){
         int i = perfilModelo.obtenerIndice(nombre,relacion);
         int contador = 0;
+
         while (contador == 0){
             medicinaVista.mostrarListaMedicinas(medicinaModelo.obtenerMedicinasDePerfil(i));
 

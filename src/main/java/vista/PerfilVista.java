@@ -36,13 +36,13 @@ public class PerfilVista {
         System.out.println("-- Lista de perfiles --");
         if (listaPerfiles.isEmpty()){
             System.out.println("  - No hay perfiles");
-            System.out.println("-----------------------");
         } else {
             for (Perfil perfil: listaPerfiles){
                 System.out.println("- " + perfil.getNombre() + " (" +perfil.getRelacion() + ")");
             }
-            System.out.println("-----------------------");
         }
+        System.out.println("-----------------------");
+
     }
 
     public int opcionesAdministrar(){

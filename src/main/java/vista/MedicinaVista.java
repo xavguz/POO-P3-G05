@@ -68,8 +68,7 @@ public class MedicinaVista {
     }
 
     public String frecuencia(){
-        ArrayList<String> diasSeleccionados = new ArrayList<String>();
-        String frecuencia;
+        ArrayList<String> diasSeleccionados = new ArrayList<>();
         int numeracion;
         while (true) {
             System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
@@ -147,7 +146,7 @@ public class MedicinaVista {
         }
     }
     public String frecuenciaDia(){
-        ArrayList<String> horas = new ArrayList<String>();
+        ArrayList<String> horas = new ArrayList<>();
         String frecuenciaDia;
         String hora;
         while (true){
@@ -192,8 +191,7 @@ public class MedicinaVista {
                         frecuenciaDia += String.join("/", horas) + " ]";
                         return frecuenciaDia;
                     default:
-                        frecuenciaDia = null;
-                        return frecuenciaDia;
+                        return null;
                     }
                 } catch (InputMismatchException e){
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");

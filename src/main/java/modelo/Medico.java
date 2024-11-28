@@ -60,6 +60,6 @@ public class Medico {
     public String toString(){
         return "Nombre: " + nombre + //
                     ", Especialidad: "+ especialidades + //
-                    ", Contacto: "+ telefono;
+                    ", Numero de Contacto: "+ telefono;
     }
 }
