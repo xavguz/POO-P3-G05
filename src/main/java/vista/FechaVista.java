@@ -23,5 +23,4 @@ public class FechaVista {
         }while(hora.isEmpty());
         return hora;
     }
-
 }
