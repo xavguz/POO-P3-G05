@@ -7,7 +7,6 @@ import modelo.Medico;
 import modelo.MedicoModelo;
 import modelo.PerfilModelo;
 import vista.CitaMedicaVista;
-import vista.FechaVista;
 import vista.MedicoVista;
 import java.util.ArrayList;
 
@@ -17,16 +16,14 @@ public class CitaMedicaControlador {
     private PerfilModelo perfilModelo;
     private MedicoModelo medicoModelo;
     private MedicoVista medicoVista;
-    private FechaVista fechaVista;
 
     public CitaMedicaControlador(CitaMedicaModelo citaMedicaModelo,CitaMedicaVista citaMedicaVista,
-    PerfilModelo perfilModelo, MedicoModelo medicoModelo, MedicoVista medicoVista, FechaVista fechaVista){
+    PerfilModelo perfilModelo, MedicoModelo medicoModelo, MedicoVista medicoVista){
         this.citaMedicaModelo = citaMedicaModelo;
         this.citaMedicaVista = citaMedicaVista;
         this.perfilModelo = perfilModelo;
         this.medicoModelo = medicoModelo;
         this.medicoVista = medicoVista;
-        this.fechaVista = fechaVista;
     }
 
     
@@ -50,8 +47,8 @@ public class CitaMedicaControlador {
             
             for(Medico medico : listaMedicos){
                 if (medico.getNombre().equalsIgnoreCase(nombreMedico)){
-                    dia = fechaVista.dia();
-                    hora = fechaVista.hora();
+                    dia = citaMedicaVista.diaCita();
+                    hora = citaMedicaVista.horaCita();
 
                     Fecha fecha = new Fecha(dia,hora);
                     CitaMedica cita = new CitaMedica(titulo, fecha, medico);

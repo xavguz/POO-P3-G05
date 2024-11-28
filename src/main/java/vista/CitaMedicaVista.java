@@ -27,6 +27,24 @@ public class CitaMedicaVista {
         return nomreMedico;
     }
 
+    public String diaCita(){
+        String diaCita;
+        do{
+            System.out.println("Ingrese el dia de la cita:");
+            diaCita = sc.nextLine();
+        }while(diaCita.isEmpty());
+        return diaCita;
+    }
+
+    public String horaCita(){
+        String horaCita;
+        do{
+            System.out.println("Ingrese la hora de la cita:");
+            horaCita = sc.nextLine();
+        }while(horaCita.isEmpty());
+        return horaCita;
+    }
+
     public void mostrarListaCitas(ArrayList<CitaMedica> listaCitas){
         if (listaCitas.isEmpty()){
             System.out.println("-------------------Lista de Citas Medicas-------------------");
