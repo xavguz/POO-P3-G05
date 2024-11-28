@@ -22,16 +22,24 @@ public class MedicinaVista {
     }
 
     public float cantidadUnidadesDisponibles() {
-        while (true) {
+        boolean validacion;
+        float opcion = -1;
+        do {
+            validacion = true;
             System.out.println("Ingresar cantidad de unidades disponibles: ");
             try {
-                float opcion = sc.nextFloat();
+                opcion = sc.nextFloat();
                 sc.nextLine();
-                return opcion;
+                if(opcion < 0){
+                    validacion = false;
+                }
             } catch (InputMismatchException e) {
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");
+                sc.nextLine();
+                validacion = false;
             }
-        }
+        }while(!validacion);
+        return opcion;
     }
 
     public String presentacionMedicina() {
