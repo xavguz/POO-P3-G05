@@ -7,6 +7,7 @@ import modelo.Medicina;
 import modelo.MedicinaModelo;
 import modelo.TomaMedicina;
 import modelo.TomaMedicinaModelo;
+import vista.FechaVista;
 import vista.MedicinaVista;
 import vista.TomaMedicinaVista;
 
@@ -16,14 +17,16 @@ public class TomaMedicinaControlador {
     private MedicinaVista medicinaVista;
     private TomaMedicinaModelo tomaMedicinaModelo;
     private TomaMedicinaVista tomaMedicinaVista;
+    private FechaVista fechaVista;
 
     public TomaMedicinaControlador(PerfilModelo perfilModelo,MedicinaModelo medicinaModelo,MedicinaVista medicinaVista,
-    TomaMedicinaModelo tomaMedicinaModelo,TomaMedicinaVista tomaMedicinaVista){
+    TomaMedicinaModelo tomaMedicinaModelo,TomaMedicinaVista tomaMedicinaVista,FechaVista fechaVista){
         this.perfilModelo = perfilModelo;
         this.medicinaModelo = medicinaModelo;
         this.medicinaVista = medicinaVista;
         this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.tomaMedicinaVista = tomaMedicinaVista;
+        this.fechaVista = fechaVista;
     }
 
 
@@ -41,8 +44,8 @@ public class TomaMedicinaControlador {
             for (Medicina medicina:listaMedicinas){
                 if (medicina.getNombreMedicamento().equalsIgnoreCase(seleccionMedicamento)){
 
-                    String dia = tomaMedicinaVista.dia();
-                    String hora = tomaMedicinaVista.hora();
+                    String dia = fechaVista.dia();
+                    String hora = fechaVista.hora();
 
                     Fecha fecha = new Fecha(dia,hora);
                     TomaMedicina toma = new TomaMedicina(medicina, fecha);

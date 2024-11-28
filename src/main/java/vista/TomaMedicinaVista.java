@@ -17,15 +17,6 @@ public class TomaMedicinaVista {
         return nombreMedicina;
     }
 
-    public String dia(){
-        System.out.println("Ingrese el dia de la toma:");
-        return sc.nextLine();
-    }
-
-    public String hora(){
-        System.out.println("Ingrese la hora de la toma:");
-        return sc.nextLine();
-    }
 
     public void mostrarListaTomas(ArrayList<TomaMedicina> listaTomas){
         if (listaTomas.isEmpty()){

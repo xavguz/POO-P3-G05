@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.Fecha;
-
 public class TomaMedicina {
     private Medicina medicina;
     private Fecha fecha;

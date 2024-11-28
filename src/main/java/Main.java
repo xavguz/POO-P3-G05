@@ -16,6 +16,7 @@ import modelo.MedicinaModelo;
 import modelo.TomaMedicinaModelo;
 import vista.ActividadFisicaVista;
 import vista.CitaMedicaVista;
+import vista.FechaVista;
 import vista.MedicinaVista;
 import vista.MedicoVista;
 import vista.PerfilVista;
@@ -38,14 +39,15 @@ public class Main {
         CitaMedicaVista citaMedicaVista = new CitaMedicaVista();
         ActividadFisicaModelo actividadFisicaModelo = new ActividadFisicaModelo();
         ActividadFisicaVista actividadFisicaVista = new ActividadFisicaVista();
+        FechaVista fechaVista = new FechaVista();
         ActividadFisicaControlador actividadFisicaControlador = new ActividadFisicaControlador(actividadFisicaModelo, actividadFisicaVista, perfilModelo);
         MedicoControlador medicoControlador= new MedicoControlador(perfilModelo, medicoModelo, medicoVista);
         TomaMedicinaControlador tomaMedicinaControlador = new TomaMedicinaControlador(perfilModelo, medicinaModelo, 
-        medicinaVista, tomaMedicinaModelo, tomaMedicinaVista);
+        medicinaVista, tomaMedicinaModelo, tomaMedicinaVista,fechaVista);
         MedicinaControlador medicinaControlador = new MedicinaControlador(medicinaModelo, medicinaVista,
                                                                 perfilModelo,tomaMedicinaControlador);
         CitaMedicaControlador citaMedicaControlador = new CitaMedicaControlador(citaMedicaModelo, citaMedicaVista, 
-                                                                perfilModelo, medicoModelo, medicoVista);
+                                                                perfilModelo, medicoModelo, medicoVista,fechaVista);
         PerfilControlador perfilControlador = new PerfilControlador(perfilModelo, perfilVista, 
         medicinaModelo, tomaMedicinaModelo, 
         medicoModelo, citaMedicaModelo, 

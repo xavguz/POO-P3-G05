@@ -69,7 +69,6 @@ public class MedicinaVista {
 
     public String frecuencia(){
         ArrayList<String> diasSeleccionados = new ArrayList<String>();
-        String frecuencia;
         int numeracion;
         while (true) {
             System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
@@ -199,7 +198,6 @@ public class MedicinaVista {
                 System.out.println("Error: Por favor, ingresa un valor numérico válido.");
                 sc.nextLine();
             }
-
         }
     }
 
