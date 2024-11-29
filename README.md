@@ -6,7 +6,10 @@ El proyecto consiste en un programa que permite a los usuarios:
 - Llevar control de sus medicamentos.
 - Supervisar su actividad física.
 
-### Integrantes:
+#### Integrantes:
 - German Soledispa
 - Xavier Guzman
 - Christian Zavala
+
+#### Diagrama UML:
+![Error de carga](src/main/resources/UML.jpeg)
