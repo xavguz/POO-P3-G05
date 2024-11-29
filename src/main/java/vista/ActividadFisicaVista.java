@@ -83,7 +83,7 @@ public class ActividadFisicaVista {
     public String duracionActividad() {
         String duracion;
         do {
-            System.out.println("Ingrese la duracion del ejercicio: ");
+            System.out.println("Ingrese la duracion del ejercicio (en minutos): ");
             duracion = sc.nextLine();
         } while (duracion.isEmpty());
         return duracion;

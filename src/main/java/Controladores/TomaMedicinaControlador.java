@@ -33,8 +33,6 @@ public class TomaMedicinaControlador {
         ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
         ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
 
-        medicinaVista.mostrarListaMedicinas(listaMedicinas);
-        tomaMedicinaVista.mostrarListaTomas(listaTomas);
 
         if (!listaMedicinas.isEmpty()){
             String seleccionMedicamento = tomaMedicinaVista.nombreMedicina();
@@ -59,4 +57,30 @@ public class TomaMedicinaControlador {
             System.out.println("No hay medicinas a regitrar toma!");
         }
     }
+
+    public void administrarTomas(String nombre,String relacion){
+        int i = perfilModelo.obtenerIndice(nombre,relacion);
+        ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
+        ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
+
+        int contador = 0;
+        while (contador == 0) {
+
+            medicinaVista.mostrarListaMedicinas(listaMedicinas);
+            tomaMedicinaVista.mostrarListaTomas(listaTomas);
+
+            System.out.println("Escoja lo que desee hacer: ");
+            int opcion = tomaMedicinaVista.opcionesTomaMedicina();
+            tomaMedicinaVista.sc.nextLine();
+            switch (opcion) {
+                case 1:
+                    registrarToma(nombre, relacion);
+                    break;
+                case 2:
+                    contador++;
+                    break;
+            }
+        }
+    }
 }
+

@@ -57,7 +57,7 @@ public class MedicinaControlador {
             }
             String consulta;
 
-            System.out.println("Esta seguro de eliminar la medicna (SI/NO): ");
+            System.out.println("Esta seguro de eliminar la medicina (SI/NO): ");
             consulta = medicinaVista.sc.nextLine();
             if (consulta.equalsIgnoreCase("si")) {
                 listaMedicinas.removeAll(medicinasEliminar);
@@ -93,7 +93,7 @@ public class MedicinaControlador {
                     eliminarMedicina(nombre,relacion);
                     break;
                 case 3:
-                    tomaMedicinaControlador.registrarToma(nombre,relacion);
+                    tomaMedicinaControlador.administrarTomas(nombre,relacion);
                     break;
                 case 4:
                     contador++;

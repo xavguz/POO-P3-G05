@@ -71,10 +71,10 @@ public class MedicinaVista {
         ArrayList<String> diasSeleccionados = new ArrayList<>();
         int numeracion;
         while (true) {
-            System.out.println("Seleccione una opción de presentación (Ingrese un numero del 1 al 6):");
+            System.out.println("Seleccione la frecuencia (Ingrese un numero del 1 al 6):");
             numeracion = 1;
-            for (Presentacion p : Presentacion.values()) {
-                System.out.println(numeracion + ". " + p);
+            for (Frecuencia frecuencia : Frecuencia.values()) {
+                System.out.println(numeracion + ". " + frecuencia);
                 numeracion++;
             }
             try {
