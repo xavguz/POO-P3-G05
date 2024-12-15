@@ -1,7 +1,6 @@
 package Controladores;
 
 import vista.MedicinaVista;
-import modelo.Medicina;
 import modelo.MedicinaModelo;
 import modelo.PerfilModelo;
 
@@ -9,22 +8,19 @@ import java.util.ArrayList;
 
 public class MedicinaControlador {
 
-    private MedicinaModelo medicinaModelo;
     private MedicinaVista medicinaVista;
     private PerfilModelo perfilModelo;
     private TomaMedicinaControlador tomaMedicinaControlador;
     
-    public MedicinaControlador(MedicinaModelo medicinaModelo, MedicinaVista medicinaVista, 
+    public MedicinaControlador(MedicinaVista medicinaVista, 
                                 PerfilModelo perfilModelo, TomaMedicinaControlador tomaMedicinaControlador){
-        this.medicinaModelo = medicinaModelo;
         this.medicinaVista = medicinaVista;
         this.perfilModelo = perfilModelo;
         this.tomaMedicinaControlador = tomaMedicinaControlador;
     }
 
-    public void añadirMedicina(String nombre,String relacion){
-        int i = perfilModelo.obtenerIndice(nombre,relacion);
-
+    public void añadirMedicina(PerfilModelo perfil){
+        
         String nombreMedicina = medicinaVista.nombreMedicina();
         float cantidadUnidadesDisponibles = medicinaVista.cantidadUnidadesDisponibles();
         String presentacion = medicinaVista.presentacionMedicina();
@@ -32,25 +28,24 @@ public class MedicinaControlador {
         String frecuenciaDia = medicinaVista.frecuenciaDia();
         float dosis = medicinaVista.dosis();
 
-        Medicina medicina = new Medicina(nombreMedicina, cantidadUnidadesDisponibles, presentacion,
+        MedicinaModelo medicina = new MedicinaModelo(nombreMedicina, cantidadUnidadesDisponibles, presentacion,
                 frecuencia, frecuenciaDia, dosis);
-        medicinaModelo.agregarMedicina(i,medicina);
+        perfil.getMedicinas().add(medicina);
         System.out.println("Se ha a agregado una nueva medicina: " + nombreMedicina);
     }
     
-    public void eliminarMedicina(String nombre,String relacion){
-        ArrayList<Medicina> medicinasEliminar = new ArrayList<>();
+    public void eliminarMedicina(PerfilModelo perfil){
+        ArrayList<MedicinaModelo> medicinasEliminar = new ArrayList<>();
         String medicinaEliminar;
 
-        int i = perfilModelo.obtenerIndice(nombre,relacion);
-        ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
+        ArrayList<MedicinaModelo> listaMedicinas = perfilModelo.getMedicinas();
 
         medicinaVista.mostrarListaMedicinas(listaMedicinas);
 
         if (!listaMedicinas.isEmpty()){
             System.out.println("Ingresar la medicina a eliminar: ");
             medicinaEliminar = medicinaVista.sc.nextLine();
-            for (Medicina medicina :listaMedicinas){
+            for (MedicinaModelo medicina :listaMedicinas){
                 if(medicina.getNombreMedicamento().equalsIgnoreCase(medicinaEliminar)){
                     medicinasEliminar.add(medicina);
                 }
@@ -68,32 +63,32 @@ public class MedicinaControlador {
                 }
             }
             else {
-                administrarMedicamento(nombre,relacion);
+                administrarMedicamento(perfil);
             }
         } else {
             System.out.println("No hay medicinas a eliminar!");
         }
     }
     
-    public void administrarMedicamento(String nombre, String relacion){
-        int i = perfilModelo.obtenerIndice(nombre,relacion);
+    public void administrarMedicamento(PerfilModelo perfil){
+        
         int contador = 0;
 
         while (contador == 0){
-            medicinaVista.mostrarListaMedicinas(medicinaModelo.obtenerMedicinasDePerfil(i));
+            medicinaVista.mostrarListaMedicinas(perfil.getMedicinas());
 
             System.out.println("Escoja lo que desee hacer: ");
             int opcion = medicinaVista.opcionesMedicamentos();
             medicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
-                    añadirMedicina(nombre,relacion);
+                    añadirMedicina(perfil);
                     break;
                 case 2:
-                    eliminarMedicina(nombre,relacion);
+                    eliminarMedicina(perfil);
                     break;
                 case 3:
-                    tomaMedicinaControlador.administrarTomas(nombre,relacion);
+                    tomaMedicinaControlador.administrarTomas(perfil);
                     break;
                 case 4:
                     contador++;

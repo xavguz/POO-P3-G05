@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import modelo.CitaMedica;
+import modelo.CitaMedicaModelo;
 
 public class CitaMedicaVista {
 
@@ -66,7 +66,7 @@ public class CitaMedicaVista {
         return horaCita;
     }
 
-    public void mostrarListaCitas(ArrayList<CitaMedica> listaCitas){
+    public void mostrarListaCitas(ArrayList<CitaMedicaModelo> listaCitas){
         if (listaCitas.isEmpty()){
             System.out.println("-------------------Lista de Citas Medicas-------------------");
             System.out.println("           No hay Citas Medicas en los registros");
@@ -74,7 +74,7 @@ public class CitaMedicaVista {
         else{
             System.out.println("-------------------Lista de Citas Medicas-------------------");
             
-            for(CitaMedica citaMedica:listaCitas){
+            for(CitaMedicaModelo citaMedica:listaCitas){
                 System.out.printf("- " + citaMedica + "\n");
             }
         }

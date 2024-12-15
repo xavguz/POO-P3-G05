@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import modelo.TomaMedicina;
+import modelo.TomaMedicinaModelo;
 import modelo.enums.Dias;
 
 public class TomaMedicinaVista {
@@ -58,13 +58,13 @@ public class TomaMedicinaVista {
         return horaToma;
     }
 
-    public void mostrarListaTomas(ArrayList<TomaMedicina> listaTomas){
+    public void mostrarListaTomas(ArrayList<TomaMedicinaModelo> listaTomas){
         System.out.println("-----------------------Registro de Tomas-----------------------");
         if (listaTomas.isEmpty()){
             System.out.println("                  No hay tomas registradas"); 
         }
         else{
-            for(TomaMedicina toma: listaTomas){
+            for(TomaMedicinaModelo toma: listaTomas){
                 System.out.printf("- " + toma + "\n");
             }
         }

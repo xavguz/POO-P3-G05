@@ -1,27 +1,19 @@
 package Controladores;
 
 import java.util.ArrayList;
-import modelo.Fecha;
+import modelo.FechaModelo;
 import modelo.PerfilModelo;
-import modelo.ActividadFisica;
 import modelo.ActividadFisicaModelo;
-import modelo.enums.Actividad;
-import modelo.enums.Horario;
 import vista.ActividadFisicaVista;
 
 public class ActividadFisicaControlador {
-    private ActividadFisicaModelo actividadFisicaModelo;
     private ActividadFisicaVista actividadFisicaVista;
-    private PerfilModelo perfilModelo;
 
-    public ActividadFisicaControlador(ActividadFisicaModelo actividadFisicaModelo, 
-    ActividadFisicaVista actividadFisicaVista, PerfilModelo perfilModelo){
-        this.actividadFisicaModelo = actividadFisicaModelo;
+    public ActividadFisicaControlador(ActividadFisicaVista actividadFisicaVista){
         this.actividadFisicaVista = actividadFisicaVista;
-        this.perfilModelo = perfilModelo;
     }
 
-    public void registrarActividadFisica(String nombre,String relacion){
+    public void registrarActividadFisica(PerfilModelo perfil){
         String dia;
         String mes;
         String año;
@@ -30,8 +22,7 @@ public class ActividadFisicaControlador {
         String duracion;
         String horario;
 
-        int i = perfilModelo.obtenerIndice(nombre, relacion);
-        ArrayList<ActividadFisica> listaActividades = actividadFisicaModelo.obtenerListaActividades(i);
+        ArrayList<ActividadFisicaModelo> listaActividades = perfil.getActividadesFisicas();
         
         actividadFisicaVista.mostrarListaActividades(listaActividades);
 
@@ -43,17 +34,15 @@ public class ActividadFisicaControlador {
         duracion = actividadFisicaVista.duracionActividad();
         horario = actividadFisicaVista.horarioActividad();
 
-        Fecha fecha = new Fecha(dia,mes,año,hora);
-        ActividadFisica actividadFisica = new ActividadFisica(fecha, actividad, duracion, horario);
-        actividadFisicaModelo.agregarActividad(i, actividadFisica);
+        FechaModelo fecha = new FechaModelo(dia,mes,año,hora);
+        ActividadFisicaModelo actividadFisica = new ActividadFisicaModelo(fecha, actividad, duracion, horario);
+        listaActividades.add(actividadFisica);
         System.out.println("Se ha agregado la actividad: " + actividadFisica);
     }
 
-    public void administrarActividadFisica(String nombre,String relacion){
-        int i = perfilModelo.obtenerIndice(nombre, relacion);
+    public void administrarActividadFisica(PerfilModelo perfil){
         int contador = 0;
-
-        ArrayList<ActividadFisica> listaActividades = actividadFisicaModelo.obtenerListaActividades(i);
+        ArrayList<ActividadFisicaModelo> listaActividades = perfil.getActividadesFisicas();
 
         while(contador == 0){
             
@@ -65,7 +54,7 @@ public class ActividadFisicaControlador {
             actividadFisicaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
-                    registrarActividadFisica(nombre,relacion);
+                    registrarActividadFisica(perfil);
                     break;
                 case 2:
                 contador++;

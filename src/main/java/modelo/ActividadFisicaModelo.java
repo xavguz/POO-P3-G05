@@ -1,30 +1,54 @@
 package modelo;
 
-import java.util.ArrayList;
-
 public class ActividadFisicaModelo {
-    private ArrayList<ArrayList<ActividadFisica>> listaListasActividades;
+    private FechaModelo fecha;
+    private String actividad;
+    private String duracion;
+    private String horario;
 
-    public ActividadFisicaModelo(){
-        this.listaListasActividades = new ArrayList<>();
+    public ActividadFisicaModelo(FechaModelo fecha, String actividad,
+                           String duracion, String horario){
+        this.fecha = fecha;
+        this.actividad = actividad;
+        this.duracion = duracion;
+        this.horario = horario;
     }
 
-    //Inicializa una lista de actividades para el perfil. 
-    public void inicializarListaActividades(){
-        listaListasActividades.add(new ArrayList<>());
+    public ActividadFisicaModelo(){}
+
+    public FechaModelo getFecha() {
+        return fecha;
     }
 
-    //Agregar una actividad a la lista de actividades.
-    public void agregarActividad(int i,ActividadFisica actividadFisica){
-        if (i >= 0 && i < listaListasActividades.size()){
-            listaListasActividades.get(i).add(actividadFisica);
-        }
+    public void setFecha(FechaModelo fecha) {
+        this.fecha = fecha;
     }
 
-    public ArrayList<ActividadFisica> obtenerListaActividades(int i){
-        if(i >= 0 && i < listaListasActividades.size()){
-            return listaListasActividades.get(i);
-        }
-    return new ArrayList<>();
+    public String getActividad() {
+        return actividad;
+    }
+
+    public void setActividad(String actividad) {
+        this.actividad = actividad;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public String toString(){
+        return fecha + " / " + actividad + " / " + duracion;
     }
 }

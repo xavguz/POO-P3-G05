@@ -1,46 +1,35 @@
 package Controladores;
 
-import modelo.Fecha;
+import modelo.FechaModelo;
 import modelo.PerfilModelo;
 import java.util.ArrayList;
-import modelo.Medicina;
 import modelo.MedicinaModelo;
-import modelo.TomaMedicina;
 import modelo.TomaMedicinaModelo;
 import vista.MedicinaVista;
 import vista.TomaMedicinaVista;
 
 public class TomaMedicinaControlador {
-    private PerfilModelo perfilModelo;
-    private MedicinaModelo medicinaModelo;
     private MedicinaVista medicinaVista;
-    private TomaMedicinaModelo tomaMedicinaModelo;
     private TomaMedicinaVista tomaMedicinaVista;
 
-    public TomaMedicinaControlador(PerfilModelo perfilModelo,MedicinaModelo medicinaModelo,MedicinaVista medicinaVista,
-    TomaMedicinaModelo tomaMedicinaModelo,TomaMedicinaVista tomaMedicinaVista){
-        this.perfilModelo = perfilModelo;
-        this.medicinaModelo = medicinaModelo;
+    public TomaMedicinaControlador(MedicinaVista medicinaVista,TomaMedicinaVista tomaMedicinaVista){
         this.medicinaVista = medicinaVista;
-        this.tomaMedicinaModelo = tomaMedicinaModelo;
         this.tomaMedicinaVista = tomaMedicinaVista;
     }
 
-
-    public void registrarToma(String nombre,String relacion){
+    public void registrarToma(PerfilModelo perfil){
         String dia;
         String mes;
         String año;
         String hora;
-
-        int i = perfilModelo.obtenerIndice(nombre,relacion);
-        ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
-        ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
+        
+        ArrayList<TomaMedicinaModelo> listaTomas = perfil.getTomaMedicinas();
+        ArrayList<MedicinaModelo> listaMedicinas = perfil.getMedicinas();
 
 
         if (!listaMedicinas.isEmpty()){
             String seleccionMedicamento = tomaMedicinaVista.nombreMedicina();
-            for (Medicina medicina:listaMedicinas){
+            for (MedicinaModelo medicina:listaMedicinas){
                 if (medicina.getNombreMedicamento().equalsIgnoreCase(seleccionMedicamento)){
 
                     dia = tomaMedicinaVista.diaToma();
@@ -48,8 +37,8 @@ public class TomaMedicinaControlador {
                     año = tomaMedicinaVista.añoToma();
                     hora = tomaMedicinaVista.horaToma();
 
-                    Fecha fecha = new Fecha(dia,mes,año,hora);
-                    TomaMedicina toma = new TomaMedicina(medicina, fecha);;
+                    FechaModelo fecha = new FechaModelo(dia,mes,año,hora);
+                    TomaMedicinaModelo toma = new TomaMedicinaModelo(medicina, fecha);;
                     listaTomas.add(toma);
 
                     System.out.println("Se ha registrado la toma de [ " + medicina.getNombreMedicamento() + " ].");
@@ -64,10 +53,10 @@ public class TomaMedicinaControlador {
         }
     }
 
-    public void administrarTomas(String nombre,String relacion){
-        int i = perfilModelo.obtenerIndice(nombre,relacion);
-        ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
-        ArrayList<Medicina> listaMedicinas = medicinaModelo.obtenerMedicinasDePerfil(i);
+    public void administrarTomas(PerfilModelo perfil){
+        
+        ArrayList<TomaMedicinaModelo> listaTomas = perfil.getTomaMedicinas();
+        ArrayList<MedicinaModelo> listaMedicinas = perfil.getMedicinas();
 
         int contador = 0;
         while (contador == 0) {
@@ -80,7 +69,7 @@ public class TomaMedicinaControlador {
             tomaMedicinaVista.sc.nextLine();
             switch (opcion) {
                 case 1:
-                    registrarToma(nombre, relacion);
+                    registrarToma(perfil);
                     break;
                 case 2:
                     contador++;

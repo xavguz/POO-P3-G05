@@ -3,7 +3,7 @@ package vista;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import modelo.Perfil;
+import modelo.PerfilModelo;
 
 public class PerfilVista {
 
@@ -32,12 +32,12 @@ public class PerfilVista {
         return sc.nextLine();
     }
 
-    public void mostrarListaPerfiles(ArrayList<Perfil> listaPerfiles){
+    public void mostrarListaPerfiles(ArrayList<PerfilModelo> listaPerfiles){
         System.out.println("-- Lista de perfiles --");
         if (listaPerfiles.isEmpty()){
             System.out.println("  - No hay perfiles");
         } else {
-            for (Perfil perfil: listaPerfiles){
+            for (PerfilModelo perfil: listaPerfiles){
                 System.out.println("- " + perfil.getNombre() + " (" +perfil.getRelacion() + ")");
             }
         }

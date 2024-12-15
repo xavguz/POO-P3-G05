@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import modelo.ActividadFisica;
+import modelo.ActividadFisicaModelo;
 import modelo.enums.Actividad;
 import modelo.enums.Horario;
 
@@ -13,12 +13,12 @@ public class ActividadFisicaVista {
 
     public Scanner sc = new Scanner(System.in);
 
-    public void mostrarListaActividades(ArrayList<ActividadFisica> listaActividades) {
+    public void mostrarListaActividades(ArrayList<ActividadFisicaModelo> listaActividades) {
         System.out.println("----------------Lista de Actividades Físicas----------------");
         if (listaActividades.isEmpty()) {
             System.out.println("- No hay Actividades Físicas en los registros.");
         } else {
-            for (ActividadFisica actividadFisica : listaActividades) {
+            for (ActividadFisicaModelo actividadFisica : listaActividades) {
                 System.out.printf("- " + actividadFisica + "\n");
             }
         }

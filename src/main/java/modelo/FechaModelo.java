@@ -1,12 +1,12 @@
 package modelo;
 
-public class Fecha {
+public class FechaModelo {
     private String dia;
     private String mes;
     private String año;
     private String hora;
 
-    public Fecha(String dia, String mes, String año, String hora){
+    public FechaModelo(String dia, String mes, String año, String hora){
         this.dia = dia;
         this.mes = mes;
         this.año = año;

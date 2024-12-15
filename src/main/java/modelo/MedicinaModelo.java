@@ -1,31 +1,86 @@
 package modelo;
 
-import java.util.ArrayList;
-
 public class MedicinaModelo {
-    private ArrayList<ArrayList<Medicina>> listaListasMedicinas;
 
-    public MedicinaModelo(){
-        this.listaListasMedicinas = new ArrayList<>();
+    private String nombreMedicamento;
+    private float unidadesDisponibles;
+    private String presentacion;
+    private String frecuencia;
+    private String frecuenciaDia;
+    private float dosis;
+
+    public MedicinaModelo(String nombreMedicamento, float unidadesDisponibles,
+                    String presentacion, String frecuencia,
+                    String frecuenciaDia, float dosis){
+        this.nombreMedicamento = nombreMedicamento;
+        this.unidadesDisponibles = unidadesDisponibles;
+        this.presentacion = presentacion;
+        this.frecuencia = frecuencia;
+        this.frecuenciaDia = frecuenciaDia;
+        this.dosis = dosis;
     }
 
-    // Crear una nueva lista de medicinas para un perfil
-    public void inicializarListaMedicinaParaPerfil() {
-        listaListasMedicinas.add(new ArrayList<>());
+    public MedicinaModelo(){}
+    
+    public void mostrarMedicina(){
+        System.out.println("Nombre del medicamento: " + nombreMedicamento);
+        System.out.println("Unidades disponibles: " + unidadesDisponibles);
+        System.out.println("Presentacion: " + presentacion);
+        System.out.println("Frecuencia: " + frecuencia);
+        System.out.println("Frecuencia dia: " + frecuenciaDia);
+        System.out.println("Dosis: " + dosis);
     }
 
-    // Agregar medicina a un perfil específico
-    public void agregarMedicina(int i, Medicina medicina) {
-        if (i >= 0 && i < listaListasMedicinas.size()) {
-            listaListasMedicinas.get(i).add(medicina);
-        }
+    public String getNombreMedicamento(){
+        return nombreMedicamento;
     }
 
-    // Obtener la lista de medicinas asociadas a un perfil
-    public ArrayList<Medicina> obtenerMedicinasDePerfil(int i) {
-        if (i >= 0 && i < listaListasMedicinas.size()) {
-            return listaListasMedicinas.get(i);
-        }
-        return new ArrayList<>();
+    public void setNombreMedicamento(String nombreMedicamento){
+        this.nombreMedicamento = nombreMedicamento;
+    }
+
+    public float getUnidadesDisponibles(){
+        return unidadesDisponibles;
+    }
+
+    public void getUnidadesDisponibles(float unidadesDisponibles){
+        this.unidadesDisponibles = unidadesDisponibles;
+    }
+
+    public String getPresentacion(){
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion){
+        this.presentacion = presentacion;
+    }
+
+    public String getFrecuencia(){
+        return frecuencia;
+    }
+
+    public void setFrecuencia(String frecuencia){
+        this.frecuencia = frecuencia;
+    }
+
+    public String getFrecuenciaDia(){
+        return frecuenciaDia;
+    }
+
+    public void setFrecuenciaDia(String frecuenciaDia){
+        this.frecuenciaDia = frecuenciaDia;
+    }
+
+    public float getDosis(){
+        return dosis;
+    }
+
+    public void setDosis(float dosis){
+        this.dosis = dosis;
+    }
+    @Override
+    public String toString(){
+        return nombreMedicamento +" / "+ unidadesDisponibles +" / "+ presentacion +" / "+ frecuencia +" / "+ frecuenciaDia +" / "+ dosis;
     }
 }
+

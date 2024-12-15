@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import modelo.Medico;
+import modelo.MedicoModelo;
 import modelo.enums.Especialidades;
 
 public class MedicoVista {
 
     public Scanner sc = new Scanner(System.in);
 
-    public void mostrarListaMedicos(ArrayList<Medico> listaMedicos){
+    public void mostrarListaMedicos(ArrayList<MedicoModelo> listaMedicos){
         System.out.println("-- Lista de Medicos --");
         if (listaMedicos.isEmpty()){
             System.out.println("  - No hay Medicos");
         }
         else{
-            for(Medico medico:listaMedicos){
+            for(MedicoModelo medico:listaMedicos){
                 System.out.printf("- " + medico + "\n");
             }
         }

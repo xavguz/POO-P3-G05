@@ -7,7 +7,7 @@ import modelo.enums.Dias;
 import modelo.enums.Frecuencia;
 import modelo.enums.FrecuenciaDia;
 import modelo.enums.Presentacion;
-import modelo.Medicina;
+import modelo.MedicinaModelo;
 
 public class MedicinaVista {
     public Scanner sc = new Scanner(System.in);
@@ -213,11 +213,11 @@ public class MedicinaVista {
         }
     }
     
-    public void mostrarListaMedicinas(ArrayList<Medicina> listaMedicinas){
+    public void mostrarListaMedicinas(ArrayList<MedicinaModelo> listaMedicinas){
         System.out.println("----------------------------------Lista de Medicinas----------------------------------");
         if (!listaMedicinas.isEmpty()) {
             System.out.println("NOMBRE / INVENTARIO / PRESENTACION / FRECUENCIA / FRECUENCIA_EN_EL_DIA [HORA] / DOSIS ");
-            for (Medicina medicina : listaMedicinas) {
+            for (MedicinaModelo medicina : listaMedicinas) {
                 System.out.printf("- " + medicina + "\n");
             }
         } else {

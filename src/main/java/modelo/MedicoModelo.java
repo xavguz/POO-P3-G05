@@ -1,32 +1,67 @@
 package modelo;
 
-import java.util.ArrayList;
-
 public class MedicoModelo {
-    private ArrayList<ArrayList<Medico>> listaListasMedicos;
+    private String nombre;
+    private String especialidades;
+    private String telefono;
+    private String email;
+    private String direccion;
 
-    public MedicoModelo(){
-        this.listaListasMedicos = new ArrayList<>();
+    public MedicoModelo(String nombre, String especialidades,
+                  String telefono, String email, String direccion){
+        this.nombre = nombre;
+        this.especialidades = especialidades;
+        this.telefono = telefono;
+        this.email = email;
+        this.direccion = direccion;
+    }
+    
+    public MedicoModelo(){}
+
+    public String getNombre() {
+        return nombre;
     }
 
-    // Inicializar Lista de medicos para un perril
-    public void inicializarListaMedicosPerfil(){
-        listaListasMedicos.add(new ArrayList<>());
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    // Agregar un medico a la lista
-    public void agregarMedico(int i, Medico medico){
-        if (i >= 0 && i < listaListasMedicos.size()){
-            listaListasMedicos.get(i).add(medico);
-        }
+    public String getEspecialidades() {
+        return especialidades;
     }
 
-    // Obtener la lista de medicos
-    public ArrayList<Medico> obtenerListaMedicos(int i){
-        if (i >= 0 && i < listaListasMedicos.size()){
-            return listaListasMedicos.get(i);
-        }
-        return new ArrayList<>();
+    public void setEspecialidades(String especialidades) {
+        this.especialidades = especialidades;
     }
 
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Override
+    public String toString(){
+        return "Nombre: " + nombre + //
+                    ", Especialidad: "+ especialidades + //
+                    ", Numero de Contacto: "+ telefono;
+    }
 }
