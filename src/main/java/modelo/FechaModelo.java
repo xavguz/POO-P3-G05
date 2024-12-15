@@ -27,6 +27,15 @@ public class FechaModelo {
     public void setHora(String hora) {
         this.hora = hora;
     }
+
+    public String getMes() {
+        return mes;
+    }
+
+    public String getAño() {
+        return año;
+    }
+
     @Override
     public String toString(){
         return dia + "/"+ mes + "/" + año + " - " + hora;

@@ -27,7 +27,12 @@ public class CitaMedicaControlador {
         ArrayList<CitaMedicaModelo> listaCitas = perfil.getCitaMedicas();
         ArrayList<MedicoModelo> listaMedicos = perfil.getMedicos();
 
-        citaMedicaVista.mostrarListaCitas(listaCitas);
+        if (listaCitas.size() < 2){
+            citaMedicaVista.mostrarListaCitas(listaCitas);
+        } else {
+            ArrayList<CitaMedicaModelo> listaCitasOrdenada = ordenarCitaMedicas(listaCitas);
+            citaMedicaVista.mostrarListaCitas(listaCitasOrdenada);
+        }
 
         titulo = citaMedicaVista.tituloCita();
         
@@ -63,7 +68,12 @@ public class CitaMedicaControlador {
 
         while (contador == 0){
 
-            citaMedicaVista.mostrarListaCitas(listaCitas);
+            if (listaCitas.size() < 2){
+                citaMedicaVista.mostrarListaCitas(listaCitas);
+            } else {
+                ArrayList<CitaMedicaModelo> listaCitasOrdenada = ordenarCitaMedicas(listaCitas);
+                citaMedicaVista.mostrarListaCitas(listaCitasOrdenada);
+            }
 
             System.out.println("Escoja lo que desee hacer:");
             int opcion = citaMedicaVista.opcionesCita();
@@ -77,5 +87,39 @@ public class CitaMedicaControlador {
                     break;
             }
         }
+    }
+
+    public ArrayList<CitaMedicaModelo> ordenarCitaMedicas(ArrayList<CitaMedicaModelo> citasMedicas) {
+
+        for (int i = 0; i < citasMedicas.size() - 1; i++){
+            CitaMedicaModelo citaMedica1 = citasMedicas.get(i);
+            int mes1 = Integer.parseInt(citaMedica1.getFecha().getMes());
+            int dia1 = Integer.parseInt(citaMedica1.getFecha().getDia());
+            int año1 = Integer.parseInt(citaMedica1.getFecha().getAño());
+
+            CitaMedicaModelo citaMedica2 = citasMedicas.get(i + 1);
+            int mes2 = Integer.parseInt(citaMedica2.getFecha().getMes());
+            int dia2 = Integer.parseInt(citaMedica2.getFecha().getDia());
+            int año2 = Integer.parseInt(citaMedica2.getFecha().getAño());
+
+            if (año1 > año2){
+                citasMedicas.set(i, citaMedica2);
+                citasMedicas.set(i + 1, citaMedica1);
+
+            } else if (año1 == año2){
+                if (mes1 > mes2){
+                    citasMedicas.set(i, citaMedica2);
+                    citasMedicas.set(i + 1, citaMedica1);
+                } else if (mes1 == mes2) {
+                    if (dia1 > dia2){
+                        citasMedicas.set(i, citaMedica2);
+                        citasMedicas.set(i + 1, citaMedica1);
+                    }
+
+                }
+            }
+
+        }
+        return citasMedicas;
     }
 }

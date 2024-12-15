@@ -67,6 +67,7 @@ public class CitaMedicaVista {
     }
 
     public void mostrarListaCitas(ArrayList<CitaMedicaModelo> listaCitas){
+
         if (listaCitas.isEmpty()){
             System.out.println("-------------------Lista de Citas Medicas-------------------");
             System.out.println("           No hay Citas Medicas en los registros");
