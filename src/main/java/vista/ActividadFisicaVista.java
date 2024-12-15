@@ -25,23 +25,45 @@ public class ActividadFisicaVista {
         System.out.println("------------------------------------------------------------");
     }
 
-    public String diaActividad() {
+    public String diaActividad(){
         String dia;
-        do {
-            System.out.println("Ingrese el dia que realizó la actividad:");
+        do{
+            System.out.println("Ingrese la fecha de la Actividad Fisica (DD/MM/AA)");
+
+            System.out.println("Ingrese el dia de la Actividad Fisica (DD): ");
             dia = sc.nextLine();
-        } while (dia.isEmpty());
+
+        }while(dia.isEmpty());
         return dia;
+    }
+
+    public String mesActividad(){
+        String mes;
+        do {
+            System.out.println("Ingrese el mes de la Actividad Fisica (MM): ");
+            mes = sc.nextLine();
+        } while (mes.isEmpty());
+        return mes;
+    }
+
+    public String añoActividad(){
+        String año;
+        do {
+            System.out.println("Ingrese el año de la Actividad Fisica (AA): ");
+            año = sc.nextLine();
+        } while (año.isEmpty());
+        return año;
     }
 
     public String horaActividad() {
         String hora;
         do {
-            System.out.println("Ingrese la hora en que realizó la actvidad:");
+            System.out.println("Ingrese la hora en que realizó la actvidad (HH:MM):");
             hora = sc.nextLine();
         } while (hora.isEmpty());
         return hora;
     }
+
 
     public String tipoActividad() {
         while (true) {

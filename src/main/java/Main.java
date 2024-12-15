@@ -61,12 +61,12 @@ public class Main {
         actividadFisicaModelo.inicializarListaActividades();
         Medicina medicinaInicio= new Medicina("Paracetamol", 30, "PASTILLA","CADA DIA", "UNA VEZ AL DÍA [ 8:00 ]", 500);
         medicinaModelo.agregarMedicina(0, medicinaInicio);
-        Fecha fechaInicio= new Fecha("Lunes", "8:00");
+        Fecha fechaInicio= new Fecha("12", "12","24","11:00");
         ActividadFisica actividadInicial= new ActividadFisica(fechaInicio, "Trotar", "30", "MAÑANA");
         actividadFisicaModelo.agregarActividad(0, actividadInicial);
         Medico medicoInicial= new Medico("Jacob", "CARDIOLOGIA", "0968124200", "Jacob@hotmail.com", "Sucre 1324");
         medicoModelo.agregarMedico(0, medicoInicial);
-        Fecha fechaInicio1= new Fecha("Viernes", "15:00");
+        Fecha fechaInicio1= new Fecha("15", "12","24","16:00");
         CitaMedica citaMedicaInicial= new CitaMedica("Cardiologia", fechaInicio1, medicoInicial);
         citaMedicaModelo.agregarCitaPerfil(0, citaMedicaInicial);
 

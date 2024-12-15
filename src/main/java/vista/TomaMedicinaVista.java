@@ -20,47 +20,39 @@ public class TomaMedicinaVista {
     }
 
     public String diaToma(){
-        int contador = 1;
-        while (true){
-            System.out.println("Seleccion el dia de la Toma (1-7): ");
-            for(Dias dia : Dias.values()) {
-                System.out.println(contador + ". " +dia);
-                contador++;
-            }
-            try {
-                int opcion = sc.nextInt();
-                sc.nextLine();
+        String dia;
+        do{
+            System.out.println("Ingrese la fecha de la Toma (DD/MM/AA)");
 
-                switch (opcion){
-                    case 1:
-                        return Dias.Lunes.name();
-                    case 2:
-                        return Dias.Martes.name();
-                    case 3:
-                        return Dias.Miercoles.name();
-                    case 4:
-                        return Dias.Jueves.name();
-                    case 5:
-                        return Dias.Viernes.name();
-                    case 6:
-                        return Dias.Sabado.name();
-                    case 7:
-                        return Dias.Domingo.name();
-                    default:
-                        System.out.println("Error: Por favor, ingresa un valor numérico válido entre 1 y 7.");
+            System.out.println("Ingrese el dia de la Toma (DD): ");
+            dia = sc.nextLine();
 
-                }
-            } catch (InputMismatchException e){
-                System.out.println("Error: Por favor, ingresa un valor numérico válido.");
-                sc.nextLine();
-            }
-        }
+        }while(dia.isEmpty());
+        return dia;
+    }
+
+    public String mesToma(){
+        String mes;
+        do {
+            System.out.println("Ingrese el mes de la Toma (MM): ");
+            mes = sc.nextLine();
+        } while (mes.isEmpty());
+        return mes;
+    }
+
+    public String añoToma(){
+        String año;
+        do {
+            System.out.println("Ingrese el año de la Toma (AA): ");
+            año = sc.nextLine();
+        } while (año.isEmpty());
+        return año;
     }
 
     public String horaToma(){
         String horaToma;
         do{
-            System.out.println("Ingrese la hora de la Toma (hh:mm): ");
+            System.out.println("Ingrese la hora de la Toma (HH:MM): ");
             horaToma = sc.nextLine();
         }while(horaToma.isEmpty());
         return horaToma;

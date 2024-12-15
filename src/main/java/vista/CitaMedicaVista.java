@@ -19,27 +19,48 @@ public class CitaMedicaVista {
     }
 
     public String nombreMedico(){
-        String nomreMedico;
+        String nombreMedico;
         do{
             System.out.println("Ingrese el nombre del medico:");
-            nomreMedico = sc.nextLine();
-        }while(nomreMedico.isEmpty());
-        return nomreMedico;
+            nombreMedico = sc.nextLine();
+        }while(nombreMedico.isEmpty());
+        return nombreMedico;
     }
 
     public String diaCita(){
-        String diaCita;
+        String dia;
         do{
-            System.out.println("Ingrese el dia de la cita:");
-            diaCita = sc.nextLine();
-        }while(diaCita.isEmpty());
-        return diaCita;
+            System.out.println("Ingrese la fecha de la cita (DD/MM/AA)");
+
+            System.out.println("Ingrese el dia de la cita (DD): ");
+            dia = sc.nextLine();
+
+        }while(dia.isEmpty());
+        return dia;
+    }
+
+    public String mesCita(){
+        String mes;
+        do {
+            System.out.println("Ingrese el mes de la cita (MM): ");
+            mes = sc.nextLine();
+        } while (mes.isEmpty());
+        return mes;
+    }
+
+    public String añoCita(){
+        String año;
+        do {
+            System.out.println("Ingrese el año de la cita (AA): ");
+            año = sc.nextLine();
+        } while (año.isEmpty());
+        return año;
     }
 
     public String horaCita(){
         String horaCita;
         do{
-            System.out.println("Ingrese la hora de la cita:");
+            System.out.println("Ingrese la hora de la cita (HH:MM):");
             horaCita = sc.nextLine();
         }while(horaCita.isEmpty());
         return horaCita;
@@ -48,7 +69,7 @@ public class CitaMedicaVista {
     public void mostrarListaCitas(ArrayList<CitaMedica> listaCitas){
         if (listaCitas.isEmpty()){
             System.out.println("-------------------Lista de Citas Medicas-------------------");
-            System.out.println("           No hay Citas Medicas en los registros");;
+            System.out.println("           No hay Citas Medicas en los registros");
         }
         else{
             System.out.println("-------------------Lista de Citas Medicas-------------------");

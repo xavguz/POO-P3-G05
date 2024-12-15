@@ -28,6 +28,10 @@ public class TomaMedicinaControlador {
 
 
     public void registrarToma(String nombre,String relacion){
+        String dia;
+        String mes;
+        String año;
+        String hora;
 
         int i = perfilModelo.obtenerIndice(nombre,relacion);
         ArrayList<TomaMedicina> listaTomas = tomaMedicinaModelo.obtenerTomaDePerfil(i);
@@ -39,11 +43,13 @@ public class TomaMedicinaControlador {
             for (Medicina medicina:listaMedicinas){
                 if (medicina.getNombreMedicamento().equalsIgnoreCase(seleccionMedicamento)){
 
-                    String dia = tomaMedicinaVista.diaToma();
-                    String hora = tomaMedicinaVista.horaToma();
+                    dia = tomaMedicinaVista.diaToma();
+                    mes = tomaMedicinaVista.mesToma();
+                    año = tomaMedicinaVista.añoToma();
+                    hora = tomaMedicinaVista.horaToma();
 
-                    Fecha fecha = new Fecha(dia,hora);
-                    TomaMedicina toma = new TomaMedicina(medicina, fecha);
+                    Fecha fecha = new Fecha(dia,mes,año,hora);
+                    TomaMedicina toma = new TomaMedicina(medicina, fecha);;
                     listaTomas.add(toma);
 
                     System.out.println("Se ha registrado la toma de [ " + medicina.getNombreMedicamento() + " ].");

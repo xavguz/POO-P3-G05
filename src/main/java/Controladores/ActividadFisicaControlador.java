@@ -22,18 +22,28 @@ public class ActividadFisicaControlador {
     }
 
     public void registrarActividadFisica(String nombre,String relacion){
+        String dia;
+        String mes;
+        String año;
+        String hora;
+        String actividad;
+        String duracion;
+        String horario;
+
         int i = perfilModelo.obtenerIndice(nombre, relacion);
         ArrayList<ActividadFisica> listaActividades = actividadFisicaModelo.obtenerListaActividades(i);
         
         actividadFisicaVista.mostrarListaActividades(listaActividades);
 
-        String dia = actividadFisicaVista.diaActividad();
-        String hora = actividadFisicaVista.horaActividad();
-        String actividad = actividadFisicaVista.tipoActividad();
-        String duracion = actividadFisicaVista.duracionActividad();
-        String horario = actividadFisicaVista.horarioActividad();
+        dia = actividadFisicaVista.diaActividad();
+        mes = actividadFisicaVista.mesActividad();
+        año = actividadFisicaVista.añoActividad();
+        hora = actividadFisicaVista.horaActividad();
+        actividad = actividadFisicaVista.tipoActividad();
+        duracion = actividadFisicaVista.duracionActividad();
+        horario = actividadFisicaVista.horarioActividad();
 
-        Fecha fecha = new Fecha(dia,hora);
+        Fecha fecha = new Fecha(dia,mes,año,hora);
         ActividadFisica actividadFisica = new ActividadFisica(fecha, actividad, duracion, horario);
         actividadFisicaModelo.agregarActividad(i, actividadFisica);
         System.out.println("Se ha agregado la actividad: " + actividadFisica);

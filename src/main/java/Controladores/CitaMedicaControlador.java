@@ -31,6 +31,8 @@ public class CitaMedicaControlador {
         int i = perfilModelo.obtenerIndice(nombre, relacion);
         String titulo;
         String dia;
+        String mes;
+        String año;
         String hora;
 
         ArrayList<CitaMedica> listaCitas = citaMedicaModelo.obtenerListaCitas(i);
@@ -48,9 +50,11 @@ public class CitaMedicaControlador {
             for(Medico medico : listaMedicos){
                 if (medico.getNombre().equalsIgnoreCase(nombreMedico)){
                     dia = citaMedicaVista.diaCita();
+                    mes = citaMedicaVista.mesCita();
+                    año = citaMedicaVista.añoCita();
                     hora = citaMedicaVista.horaCita();
 
-                    Fecha fecha = new Fecha(dia,hora);
+                    Fecha fecha = new Fecha(dia,mes,año,hora);
                     CitaMedica cita = new CitaMedica(titulo, fecha, medico);
                     citaMedicaModelo.agregarCitaPerfil(i, cita);
                 }

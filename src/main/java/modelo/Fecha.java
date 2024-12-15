@@ -2,13 +2,14 @@ package modelo;
 
 public class Fecha {
     private String dia;
+    private String mes;
+    private String año;
     private String hora;
 
-    public Fecha(String dia, String hora){
+    public Fecha(String dia, String mes, String año, String hora){
         this.dia = dia;
-        this.hora = hora;
-    }
-    public Fecha(String hora){
+        this.mes = mes;
+        this.año = año;
         this.hora = hora;
     }
 
@@ -28,6 +29,6 @@ public class Fecha {
     }
     @Override
     public String toString(){
-        return "Dia: " + dia + ", hora: "+ hora;
+        return dia + "/"+ mes + "/" + año + " - " + hora;
     }
 }
